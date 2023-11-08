@@ -518,3 +518,19 @@ h6,
 .copyright a:hover {
     color: var(--primary);
 }
+/* For email adaptive rule */
+p.mb-2 {
+  display: flex;
+  align-items: center;
+}
+
+i.fa-envelope {
+  margin-right: 10px;
+}
+
+/* Медиа-запрос для экранов шире 1200 пикселей */
+@media (min-width: 1200px) {
+  i.fa-envelope {
+    margin-right: 0; /* Убираем отступ между иконкой и текстом */
+  }
+}

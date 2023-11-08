@@ -97,8 +97,10 @@
               target="_blank"
               ><i class="fab fa-youtube"></i
             ></a>
-            <a class="btn btn-link text-light" href="https://web.tlgrm.app/"
-            target="_blank"
+            <a
+              class="btn btn-link text-light"
+              href="https://web.tlgrm.app/"
+              target="_blank"
               ><i class="fab fa-telegram"></i
             ></a>
             <a
@@ -136,7 +138,9 @@
           <!-- about.html -->
           <a href="index.html" class="nav-item nav-link">Услуги</a>
           <!-- service.html -->
-          <a href="project.html" class="nav-item nav-link">Наши работы</a>
+          <a href="project.html" class="nav-item nav-link"
+            >Примеры наших работ</a
+          >
           <!-- project.html -->
           <div class="nav-item dropdown">
             <a
@@ -1054,11 +1058,15 @@
               <i class="fa fa-map-marker-alt me-3"></i>Киев , Украина
             </p>
             <p class="mb-2">
-              <i class="fa fa-phone-alt me-3"></i>093 786 08 50
+              <i class="fa fa-phone-alt me-3"></i
+              ><span id="phone">093 786 08 50</span>
             </p>
+
             <p class="mb-2">
-              <i class="fa fa-envelope me-3"></i>ecotrimua@gmail.com
+              <i class="fa fa-envelope me-3"></i
+              ><span id="email">ecotrimua@gmail.com</span>
             </p>
+
             <div class="d-flex pt-2">
               <!-- Instagram -->
               <a
@@ -1164,5 +1172,25 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+      // Footer / mail /phone / link by click
+      // Mail
+      document.getElementById("email").addEventListener("click", function () {
+        var email = this.innerText;
+        location.href = "mailto:" + email;
+      });
+    </script>
+    <!-- Phone -->
+    <script>
+      document.getElementById("phone").addEventListener("click", function () {
+        var phoneNumber = this.innerText.replace(/\s+/g, ""); // Удаляем пробелы и другие разделители из номера
+        location.href = "tel:" + phoneNumber;
+      });
+    </script>
   </body>
 </html>
+
+рабочий вариант почты в футере
+<!-- <p class="mb-2">
+  <i class="fa fa-envelope me-3"></i><span id="email">ecotrimua@gmail.com</span>
+</p> -->
