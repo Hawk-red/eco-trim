@@ -77,28 +77,37 @@
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="name" placeholder="Ваше имя" required>
-                    <label for="name">Ваше имя</label>
+                    <input type="text" class="form-control" name="name" placeholder="Имя" required>
+                    <label for="name">Имя</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="email" class="form-control" name="email" placeholder="Ваш Email" required>
-                    <label for="email">Ваш Email</label>
+                    <input type="text" class="form-control" name="phone" placeholder="Телефон" required>
+                    <label for="phone">Телефон</label>
                   </div>
                 </div>
+            
                 <div class="col-12">
                   <div class="form-floating">
-                    <input type="text" class="form-control" name="subject" placeholder="Тема">
-                    <label for="subject">Тема</label>
+                    <select class="form-select" name="preferred_contact" required>
+                      <option value="" disabled selected>Выберите, куда ответить</option>
+                      <option value="Viber">Viber</option>
+                      <option value="Telegram">Telegram</option>
+                      <option value="Звонок">Звонок</option>
+                      <option value="SMS">SMS</option>
+                    </select>
+                    <label for="preferred_contact">Куда ответить</label>
                   </div>
                 </div>
+            
                 <div class="col-12">
                   <div class="form-floating">
                     <textarea class="form-control" name="message" placeholder="Сообщение" style="height: 100px" required></textarea>
                     <label for="message">Сообщение</label>
                   </div>
                 </div>
+            
                 <div class="col-12">
                   <button class="btn btn-primary py-3 px-4" type="submit">Отправить</button>
                 </div>
