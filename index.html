@@ -1185,6 +1185,15 @@
         location.href = "tel:" + phoneNumber;
       });
     </script>
+
+<!-- script from AI to fix bug with qrcodes in project.html page -->
+<script>
+  window.addEventListener('load', function () {
+    var spinner = document.getElementById('spinner');
+    spinner.classList.remove('show');
+  });
+</script>
+
   </body>
 </html>
 
