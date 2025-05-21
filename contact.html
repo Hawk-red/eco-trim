@@ -70,9 +70,11 @@
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
             <p class="fs-5 fw-bold text-primary">Свяжитесь с нами</p>
             <h1 class="display-5 mb-5">Если у вас есть вопросы — напишите нам</h1>
-            <form action="https://formsubmit.co/ecotrimua@gmail.com" method="POST">
+            <form id="contactForm" action="https://formsubmit.co/ajax/ecotrimua@gmail.com" method="POST">
+              <!-- Отключаем капчу и задаём шаблон письма -->
               <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://ecotrim.kiev.ua/thank-you.html">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_autoresponse" value="Спасибо за обращение! Мы скоро свяжемся с вами.">
             
               <div class="row g-3">
                 <div class="col-md-6">
@@ -81,6 +83,7 @@
                     <label for="name">Имя</label>
                   </div>
                 </div>
+            
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input type="text" class="form-control" name="phone" placeholder="Телефон" required>
@@ -91,13 +94,13 @@
                 <div class="col-12">
                   <div class="form-floating">
                     <select class="form-select" name="preferred_contact" required>
-                      <option value="" disabled selected>Выберите мессенджер: </option>
+                      <option value="" disabled selected>Выберите мессенджер : </option>
                       <option value="Telegram">Telegram</option>
                       <option value="Viber">Viber</option>
-                      <option value="Звонок">Перезвонить Вам </option>
+                      <option value="Звонок">Перезвонить Вам</option>
                       <!-- <option value="SMS">SMS</option> -->
                     </select>
-                    <!-- <label for="preferred_contact">Куда ответить</label> -->
+                    <label for="preferred_contact">Куда ответить</label>
                   </div>
                 </div>
             
@@ -113,6 +116,11 @@
                 </div>
               </div>
             </form>
+            
+            <!-- Сообщение об успешной отправке -->
+            <div id="successMessage" class="alert alert-success mt-4 d-none">
+              ✅ Спасибо за обращение! Мы свяжемся с вами в ближайшее время.
+            </div>
           </div>
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px;">
             <div class="position-relative rounded overflow-hidden h-100">
@@ -166,5 +174,33 @@
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
     <script src="js/main.js"></script>
+ 
+    <!-- всплывающее окно полсе отравки формы контакт  -->
+    <script>
+      const form = document.getElementById("contactForm");
+      const message = document.getElementById("successMessage");
+    
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // остановить обычную отправку
+    
+        fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            form.reset();
+            message.classList.remove("d-none");
+          } else {
+            alert("Ошибка при отправке. Попробуйте позже.");
+          }
+        }).catch(error => {
+          alert("Ошибка соединения.");
+        });
+      });
+    </script>
+
   </body>
 </html>
