@@ -70,29 +70,29 @@
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
             <p class="fs-5 fw-bold text-primary">Свяжитесь с нами</p>
             <h1 class="display-5 mb-5">Если у вас есть вопросы — напишите нам</h1>
-            <form>
+            <form action="send.php" method="POST">
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="name" placeholder="Ваше имя">
+                    <input type="text" class="form-control" name="name" placeholder="Ваше имя" required>
                     <label for="name">Ваше имя</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="email" class="form-control" id="email" placeholder="Ваш Email">
+                    <input type="email" class="form-control" name="email" placeholder="Ваш Email" required>
                     <label for="email">Ваш Email</label>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="subject" placeholder="Тема">
+                    <input type="text" class="form-control" name="subject" placeholder="Тема">
                     <label for="subject">Тема</label>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
-                    <textarea class="form-control" placeholder="Введите сообщение здесь" id="message" style="height: 100px"></textarea>
+                    <textarea class="form-control" name="message" placeholder="Сообщение" style="height: 100px" required></textarea>
                     <label for="message">Сообщение</label>
                   </div>
                 </div>
