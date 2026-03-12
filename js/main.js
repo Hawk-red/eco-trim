@@ -52,6 +52,9 @@
         itemSelector: '.portfolio-item',
         layoutMode: 'fitRows'
     });
+    $(window).on('load', function () {
+        portfolioIsotope.isotope('layout');
+    });
     $('#portfolio-flters li').on('click', function () {
         $("#portfolio-flters li").removeClass('active');
         $(this).addClass('active');

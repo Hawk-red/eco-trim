@@ -314,6 +314,12 @@ h6,
 
 
 /*** Project Portfolio ***/
+.portfolio-container {
+    display: block !important;
+    position: relative;
+    transition: height 0.4s ease;
+}
+
 #portfolio-flters {
     display: inline-block;
     background: var(--light);
