@@ -464,20 +464,20 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
         <div data-aos="fade-up" data-aos-delay="0">
-          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.projects + '+'">218+</div>
+          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.projects + '+'">437+</div>
           <p class="text-white/70 font-medium mt-2">Выполненных заказов</p>
         </div>
         <div data-aos="fade-up" data-aos-delay="100">
-          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.trees">2742</div>
-          <p class="text-white/70 font-medium mt-2">Обработанных деревьев</p>
+          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.trees">1628</div>
+          <p class="text-white/70 font-medium mt-2">Обрезанных деревьев</p>
         </div>
         <div data-aos="fade-up" data-aos-delay="200">
-          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.saved">53</div>
+          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.saved">130</div>
           <p class="text-white/70 font-medium mt-2">Спасённых деревьев</p>
         </div>
         <div data-aos="fade-up" data-aos-delay="300">
-          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.years + (counters.years > 0 ? '' : '')">11</div>
-          <p class="text-white/70 font-medium mt-2">Лет опыта</p>
+          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.parasites">183</div>
+          <p class="text-white/70 font-medium mt-2">Срезанных паразитов</p>
         </div>
       </div>
     </div>
@@ -967,7 +967,7 @@ footer a:hover{color:#a5d6a7!important}
     function counterSection() {
       return {
         started: false,
-        counters: { projects: 0, trees: 0, saved: 0, years: 0 },
+        counters: { projects: 0, trees: 0, saved: 0, parasites: 0 },
 
         startCounters() {
           if (this.started) return;
@@ -975,14 +975,15 @@ footer a:hover{color:#a5d6a7!important}
           const start = new Date('2015-01-01');
           const now = new Date();
           const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
-          const orders = Math.floor(months * 6.25);
-          const trees  = orders * 4;
-          const saved  = Math.floor(trees * 0.08);
-          const years  = now.getFullYear() - 2015;
-          this.animateCount('projects', orders, 1800);
-          this.animateCount('trees',    trees,  2200);
-          this.animateCount('saved',    saved,  1500);
-          this.animateCount('years',    years,  1200);
+          // Rates calibrated: 437 orders, 1628 trees, 183 parasites at 134 months (Mar 2026)
+          const orders    = Math.round(months * (437 / 134));
+          const trees     = Math.round(orders * (1628 / 437));
+          const saved     = Math.floor(trees * 0.08);
+          const parasites = Math.round(orders * (183 / 437));
+          this.animateCount('projects',  orders,    1800);
+          this.animateCount('trees',     trees,     2200);
+          this.animateCount('saved',     saved,     1500);
+          this.animateCount('parasites', parasites, 1200);
         },
 
         animateCount(key, target, duration) {
