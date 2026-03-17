@@ -606,5 +606,52 @@
   }
   </script>
 
+
+<!-- ===== CHAINSAW CHAIN SCROLL PROGRESS ===== -->
+<style>
+#chain-wrap{position:fixed;top:0;left:0;right:0;height:10px;z-index:10001;pointer-events:none;background:rgba(20,20,20,.12)}
+#chain-fill{height:100%;width:0%;max-width:100%;position:relative;overflow:visible;
+  background:linear-gradient(180deg,#96aab8 0%,#708090 48%,#566270 100%);
+  box-shadow:0 2px 6px rgba(0,0,0,.35)}
+/* link separators */
+#chain-fill::before{content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent 15px,rgba(0,0,0,.32) 15px,rgba(0,0,0,.32) 17px,transparent 17px,transparent 20px);
+  pointer-events:none}
+/* teeth on top */
+#chain-fill::after{content:'';position:absolute;top:-5px;left:0;right:0;height:6px;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent 5px,#708090 5px,#708090 15px,transparent 15px,transparent 20px)}
+/* rivet highlight */
+#chain-rivets{position:absolute;top:50%;left:0;right:0;height:3px;transform:translateY(-50%);
+  background:repeating-linear-gradient(90deg,transparent 0,transparent 8px,rgba(255,255,255,.38) 8px,rgba(255,255,255,.38) 10px,transparent 10px,transparent 20px)}
+#anim-btn-ct{position:fixed;bottom:1.5rem;left:1.5rem;z-index:10000;width:36px;height:36px;border-radius:50%;border:none;
+  background:rgba(26,92,56,.85);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  pointer-events:auto;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:background .2s}
+#anim-btn-ct:hover{background:rgba(26,92,56,1)}
+@media(max-width:768px){#chain-wrap{height:5px}#chain-fill::before,#chain-fill::after,#chain-rivets,#anim-btn-ct{display:none}}
+</style>
+<div id="chain-wrap"><div id="chain-fill"><div id="chain-rivets"></div></div></div>
+<button id="anim-btn-ct" title="Пауза анимации" aria-label="Пауза анимации">
+  <svg id="ico-pct" width="14" height="14" viewBox="0 0 14 14" fill="white"><rect x="2" y="1" width="4" height="12" rx="1"/><rect x="8" y="1" width="4" height="12" rx="1"/></svg>
+  <svg id="ico-rct" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none"><polygon points="2,1 12,7 2,13"/></svg>
+</button>
+<script>
+(function(){
+  var bar=document.getElementById('chain-fill'),paused=false,ticking=false;
+  function upd(){
+    if(!paused){
+      var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
+      bar.style.width=Math.min(100,s/tot*100)+'%';
+    }
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
+  document.getElementById('anim-btn-ct').addEventListener('click',function(){
+    paused=!paused;
+    document.getElementById('ico-pct').style.display=paused?'none':'';
+    document.getElementById('ico-rct').style.display=paused?'':'none';
+  });
+})();
+</script>
+
 </body>
 </html>

@@ -2,12 +2,103 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <title>EcoTrim — Наши работы</title>
-  <meta http-equiv="refresh" content="0; url=portfolio.html" />
+  <title>EcoTrim — Загрузка...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="canonical" href="portfolio.html" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&family=Inter:wght@400&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:linear-gradient(135deg,#0f1a13 0%,#1a3020 100%);min-height:100vh;
+      display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif;overflow:hidden}
+    #tree-wrap{position:fixed;bottom:0;left:0;pointer-events:none;width:380px;height:500px}
+    #bsvg{width:100%;height:100%;overflow:visible}
+    .bp{stroke-linecap:round;stroke-linejoin:round;fill:none}
+    .lc{opacity:0;transition:r .5s ease-out,opacity .5s ease-out}
+    #msg{position:relative;z-index:10;text-align:center}
+    .lt{font-size:2.6rem;font-weight:800;color:#fff;font-family:"Plus Jakarta Sans",sans-serif;letter-spacing:-.02em}
+    .lt span{color:#4caf50}
+    #msg p{color:rgba(255,255,255,.55);font-size:.95rem;margin-top:.75rem;letter-spacing:.04em}
+    #pring{margin:2rem auto 0;width:56px;height:56px;display:block}
+    #rc{stroke:#4caf50;stroke-width:3;fill:none;transform:rotate(-90deg);transform-origin:50% 50%}
+    #rbg{stroke:rgba(255,255,255,.1);stroke-width:3;fill:none}
+  </style>
 </head>
 <body>
-  <p>Перенаправление... <a href="portfolio.html">Нажмите здесь если не перенаправляет.</a></p>
-  <script>window.location.replace('portfolio.html');</script>
+<div id="tree-wrap">
+  <svg id="bsvg" viewBox="0 0 380 500" xmlns="http://www.w3.org/2000/svg">
+    <path id="b0" class="bp" stroke="#4a2c0a" stroke-width="20" d="M190 500C188 420 185 310 187 210 189 130 190 70 190 10"/>
+    <path id="b1" class="bp" stroke="#5d3a1a" stroke-width="12" d="M188 390C165 368 135 356 105 348"/>
+    <path id="b2" class="bp" stroke="#5d3a1a" stroke-width="12" d="M188 350C210 328 240 318 268 310"/>
+    <path id="b3" class="bp" stroke="#5d3a1a" stroke-width="9"  d="M187 260C158 238 128 228 98 220"/>
+    <path id="b4" class="bp" stroke="#5d3a1a" stroke-width="9"  d="M188 220C215 198 245 190 273 184"/>
+    <path id="b5" class="bp" stroke="#5d3a1a" stroke-width="6"  d="M188 150C162 128 138 122 115 116"/>
+    <path id="b6" class="bp" stroke="#5d3a1a" stroke-width="6"  d="M189 130C212 110 236 104 258 100"/>
+    <path id="b7" class="bp" stroke="#5d3a1a" stroke-width="4"  d="M105 348C82 332 62 325 44 320"/>
+    <path id="b8" class="bp" stroke="#5d3a1a" stroke-width="4"  d="M268 310C285 294 298 287 312 282"/>
+    <circle id="l1" class="lc" cx="100" cy="344" r="0" fill="#4caf50"/>
+    <circle id="l2" class="lc" cx="82"  cy="330" r="0" fill="#81c784"/>
+    <circle id="l3" class="lc" cx="266" cy="306" r="0" fill="#4caf50"/>
+    <circle id="l4" class="lc" cx="280" cy="294" r="0" fill="#66bb6a"/>
+    <circle id="l5" class="lc" cx="96"  cy="216" r="0" fill="#81c784"/>
+    <circle id="l6" class="lc" cx="272" cy="180" r="0" fill="#4caf50"/>
+    <circle id="l7" class="lc" cx="113" cy="112" r="0" fill="#aed581"/>
+    <circle id="l8" class="lc" cx="256" cy="96"  r="0" fill="#66bb6a"/>
+    <circle id="l9" class="lc" cx="42"  cy="316" r="0" fill="#81c784"/>
+    <circle id="l10" class="lc" cx="312" cy="278" r="0" fill="#4caf50"/>
+  </svg>
+</div>
+<div id="msg">
+  <div class="lt">Eco<span>Trim</span></div>
+  <p>Переходим в галерею работ...</p>
+  <svg id="pring" viewBox="0 0 44 44">
+    <circle id="rbg" cx="22" cy="22" r="20"/>
+    <circle id="rc"  cx="22" cy="22" r="20"/>
+  </svg>
+</div>
+<script>
+(function(){
+  var TOTAL=3000,start=Date.now();
+  var branches=[
+    {id:'b0',delay:0,  dur:600},
+    {id:'b1',delay:500,dur:380},
+    {id:'b2',delay:620,dur:380},
+    {id:'b3',delay:920,dur:330},
+    {id:'b4',delay:1020,dur:330},
+    {id:'b5',delay:1300,dur:280},
+    {id:'b6',delay:1400,dur:280},
+    {id:'b7',delay:1660,dur:240},
+    {id:'b8',delay:1760,dur:240}
+  ];
+  var leaves=[
+    {id:'l1',delay:920,r:24},{id:'l2',delay:1020,r:16},
+    {id:'l3',delay:1070,r:22},{id:'l4',delay:1170,r:14},
+    {id:'l5',delay:1360,r:20},{id:'l6',delay:1460,r:21},
+    {id:'l7',delay:1660,r:18},{id:'l8',delay:1760,r:19},
+    {id:'l9',delay:1920,r:16},{id:'l10',delay:2020,r:20}
+  ];
+  branches.forEach(function(b){
+    var el=document.getElementById(b.id);
+    if(!el)return;
+    var len=el.getTotalLength?el.getTotalLength():300;
+    el.style.strokeDasharray=len;
+    el.style.strokeDashoffset=len;
+    el.style.transition='stroke-dashoffset '+b.dur+'ms ease-in-out';
+    setTimeout(function(){el.style.strokeDashoffset=0;},b.delay);
+  });
+  leaves.forEach(function(l){
+    var el=document.getElementById(l.id);
+    if(!el)return;
+    setTimeout(function(){el.setAttribute('r',l.r);el.style.opacity=1;},l.delay);
+  });
+  var ring=document.getElementById('rc'),C=2*Math.PI*20;
+  ring.style.strokeDasharray=C;ring.style.strokeDashoffset=C;
+  (function tick(){
+    var p=Math.min(1,(Date.now()-start)/TOTAL);
+    ring.style.strokeDashoffset=C*(1-p);
+    if(p<1)requestAnimationFrame(tick);
+    else window.location.replace('portfolio.html');
+  })();
+})();
+</script>
 </body>
 </html>

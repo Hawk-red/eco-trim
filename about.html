@@ -639,5 +639,71 @@
   }
   </script>
 
+
+<!-- ===== ROPE CLIMBER ANIMATION ===== -->
+<style>
+#rope-scene{position:fixed;right:20px;top:0;bottom:0;width:80px;pointer-events:none;z-index:100}
+#rope-line{position:absolute;left:50%;top:0;bottom:0;width:5px;margin-left:-2.5px;
+  background:repeating-linear-gradient(to bottom,#8B4513 0,#a0522d 4px,#6b3410 8px,#8B4513 12px);
+  border-radius:3px;animation:ropeSway 4s ease-in-out infinite;transform-origin:top center}
+@keyframes ropeSway{0%,100%{transform:rotate(.8deg)}50%{transform:rotate(-.8deg)}}
+#climber-fig{position:absolute;left:50%;width:62px;height:82px;margin-left:-31px;top:40px;
+  transition:top .12s cubic-bezier(.25,.46,.45,.94);will-change:top}
+#anim-btn-a{position:fixed;bottom:1.5rem;left:1.5rem;z-index:10000;width:36px;height:36px;border-radius:50%;border:none;
+  background:rgba(26,92,56,.85);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  pointer-events:auto;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:background .2s}
+#anim-btn-a:hover{background:rgba(26,92,56,1)}
+@media(max-width:768px){#rope-scene,#anim-btn-a{display:none}}
+</style>
+<div id="rope-scene">
+  <div id="rope-line"></div>
+  <svg id="climber-fig" viewBox="0 0 62 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="31" cy="13" rx="15" ry="11" fill="#1a5c38"/>
+    <ellipse cx="31" cy="11" rx="13" ry="9" fill="#2d7a50"/>
+    <rect x="16" y="19" width="30" height="5" rx="2.5" fill="#1a5c38"/>
+    <ellipse cx="31" cy="26" rx="10" ry="11" fill="#d4956a"/>
+    <circle cx="26.5" cy="24" r="2.2" fill="#2c1a0e"/>
+    <circle cx="35.5" cy="24" r="2.2" fill="#2c1a0e"/>
+    <circle cx="27.5" cy="23" r=".8" fill="white"/>
+    <circle cx="36.5" cy="23" r=".8" fill="white"/>
+    <path d="M27 30Q31 33 35 30" stroke="#8B5A3A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <rect x="21" y="37" width="20" height="22" rx="5" fill="#1a5c38"/>
+    <path d="M23 39L31 47L39 39" stroke="#4caf50" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M23 54L31 48L39 54" stroke="#4caf50" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="8"  y="42" width="10" height="14" rx="5" fill="none" stroke="#c8c8c8" stroke-width="2.5"/>
+    <rect x="44" y="42" width="10" height="14" rx="5" fill="none" stroke="#c8c8c8" stroke-width="2.5"/>
+    <line x1="18" y1="48" x2="21" y2="48" stroke="#8B4513" stroke-width="2.5"/>
+    <line x1="41" y1="48" x2="44" y2="48" stroke="#8B4513" stroke-width="2.5"/>
+    <rect x="22" y="59" width="8"  height="16" rx="4" fill="#1a5c38"/>
+    <rect x="32" y="59" width="8"  height="16" rx="4" fill="#1a5c38"/>
+    <ellipse cx="26" cy="76" rx="7" ry="4.5" fill="#111"/>
+    <ellipse cx="36" cy="76" rx="7" ry="4.5" fill="#111"/>
+  </svg>
+</div>
+<button id="anim-btn-a" title="Пауза анимации" aria-label="Пауза анимации">
+  <svg id="ico-pa" width="14" height="14" viewBox="0 0 14 14" fill="white"><rect x="2" y="1" width="4" height="12" rx="1"/><rect x="8" y="1" width="4" height="12" rx="1"/></svg>
+  <svg id="ico-ra" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none"><polygon points="2,1 12,7 2,13"/></svg>
+</button>
+<script>
+(function(){
+  if(window.innerWidth<768)return;
+  var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
+  function upd(){
+    if(!paused){
+      var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
+      fig.style.top=(40+Math.min(1,s/tot)*(window.innerHeight-95-40))+'px';
+    }
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
+  document.getElementById('anim-btn-a').addEventListener('click',function(){
+    paused=!paused;
+    document.getElementById('ico-pa').style.display=paused?'none':'';
+    document.getElementById('ico-ra').style.display=paused?'':'none';
+    document.getElementById('rope-line').style.animationPlayState=paused?'paused':'running';
+  });
+})();
+</script>
+
 </body>
 </html>
