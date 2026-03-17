@@ -384,7 +384,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
                 <i class="fas fa-award text-white text-xl"></i>
               </div>
               <div>
-                <p class="font-heading font-extrabold text-white text-2xl">10 лет</p>
+                <p class="font-heading font-extrabold text-white text-2xl years-badge">10 лет</p>
                 <p class="text-white/60 text-sm">на рынке с 2015 года</p>
               </div>
             </div>
@@ -663,8 +663,8 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
           <div class="why-icon w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-5 transition-all duration-300">
             <i class="fas fa-award text-2xl"></i>
           </div>
-          <h3 class="font-heading font-bold text-dark text-lg mb-2 transition-colors duration-300">10 лет опыта</h3>
-          <p class="text-gray-500 text-sm leading-relaxed transition-colors duration-300">Более 218 выполненных проектов. Работаем с деревьями любой сложности.</p>
+          <h3 class="font-heading font-bold text-dark text-lg mb-2 transition-colors duration-300 years-badge-long">10 лет опыта</h3>
+          <p class="text-gray-500 text-sm leading-relaxed transition-colors duration-300 orders-badge">Более 218 выполненных проектов. Работаем с деревьями любой сложности.</p>
         </div>
         <div class="why-card bg-white rounded-2xl p-8 text-center shadow-md cursor-default" data-aos="fade-up" data-aos-delay="100">
           <div class="why-icon w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-5 transition-all duration-300">
@@ -972,10 +972,17 @@ footer a:hover{color:#a5d6a7!important}
         startCounters() {
           if (this.started) return;
           this.started = true;
-          this.animateCount('projects', 218, 1800);
-          this.animateCount('trees', 2742, 2200);
-          this.animateCount('saved', 53, 1500);
-          this.animateCount('years', new Date().getFullYear() - 2015, 1200);
+          const start = new Date('2015-01-01');
+          const now = new Date();
+          const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+          const orders = Math.floor(months * 6.25);
+          const trees  = orders * 4;
+          const saved  = Math.floor(trees * 0.08);
+          const years  = now.getFullYear() - 2015;
+          this.animateCount('projects', orders, 1800);
+          this.animateCount('trees',    trees,  2200);
+          this.animateCount('saved',    saved,  1500);
+          this.animateCount('years',    years,  1200);
         },
 
         animateCount(key, target, duration) {
@@ -1097,6 +1104,16 @@ footer a:hover{color:#a5d6a7!important}
 })();
 </script>
 
+<script>
+(function(){
+  const _s = new Date('2015-01-01'), _n = new Date();
+  const _mo = (_n.getFullYear()-_s.getFullYear())*12+(_n.getMonth()-_s.getMonth());
+  const _ord = Math.floor(_mo*6.25), _yr = _n.getFullYear()-2015;
+  document.querySelectorAll('.years-badge').forEach(el=>el.textContent=_yr+' лет');
+  document.querySelectorAll('.years-badge-long').forEach(el=>el.textContent=_yr+' лет опыта');
+  document.querySelectorAll('.orders-badge').forEach(el=>el.textContent='Более '+_ord+' выполненных проектов. Работаем с деревьями любой сложности.');
+})();
+</script>
 <script>
 (function(){
   var g = document.getElementById('social-icons-group');
