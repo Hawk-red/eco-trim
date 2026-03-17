@@ -44,6 +44,8 @@
     }
   </script>
 
+  <!-- Alpine.js Intersect plugin (must load before Alpine core) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -431,7 +433,7 @@
           <p class="text-white/70 font-medium mt-2">Спасённых деревьев</p>
         </div>
         <div data-aos="fade-up" data-aos-delay="300">
-          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.years">10</div>
+          <div class="font-heading font-extrabold text-accent text-5xl lg:text-6xl" x-text="counters.years + (counters.years > 0 ? '' : '')">11</div>
           <p class="text-white/70 font-medium mt-2">Лет опыта</p>
         </div>
       </div>
@@ -928,7 +930,7 @@
           this.animateCount('projects', 218, 1800);
           this.animateCount('trees', 2742, 2200);
           this.animateCount('saved', 53, 1500);
-          this.animateCount('years', 10, 1200);
+          this.animateCount('years', new Date().getFullYear() - 2015, 1200);
         },
 
         animateCount(key, target, duration) {
