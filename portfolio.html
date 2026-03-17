@@ -151,7 +151,8 @@
 <style>
 .nav-social{display:inline-block}
 a .fa-phone,a .fa-envelope{display:inline-block}
-a:hover .fa-phone,a:hover .fa-envelope{animation:iconBounce .5s ease}
+a:hover .fa-phone{animation:iconVibrate .35s ease}
+a:hover .fa-envelope{animation:iconBounce .5s ease}
 .nav-social:hover i{animation:iconBounce .5s ease}
 @keyframes iconBounce{
   0%,100%{transform:translateY(0)}
@@ -162,7 +163,8 @@ a:hover .fa-phone,a:hover .fa-envelope{animation:iconBounce .5s ease}
 footer a:hover{animation:iconVibrate .35s ease}
 footer a[href^="tel"],footer a[href^="mailto"]{animation:none!important}
 footer a[href^="tel"] i,footer a[href^="mailto"] i{display:inline-block}
-footer a[href^="tel"]:hover i,footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
+footer a[href^="tel"]:hover i{animation:iconVibrate .35s ease}
+footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
 @keyframes iconVibrate{
   0%,100%{transform:translateX(0)}
   15%    {transform:translateX(-3px)}
