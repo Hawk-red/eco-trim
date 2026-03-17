@@ -148,6 +148,25 @@
       .lightbox-next { right: 2rem; }
     }
   </style>
+<style>
+.nav-social{display:inline-block}
+.nav-social:hover i{animation:iconBounce .5s ease}
+@keyframes iconBounce{
+  0%,100%{transform:translateY(0)}
+  25%    {transform:translateY(-10px)}
+  55%    {transform:translateY(-5px)}
+  80%    {transform:translateY(-8px)}
+}
+footer a:hover i{animation:iconShake .45s ease}
+@keyframes iconShake{
+  0%,100%{transform:rotate(0deg)}
+  15%    {transform:rotate(-18deg)}
+  35%    {transform:rotate(14deg)}
+  55%    {transform:rotate(-11deg)}
+  75%    {transform:rotate(8deg)}
+  90%    {transform:rotate(-4deg)}
+}
+</style>
 </head>
 
 <body
@@ -174,9 +193,9 @@
         </div>
         <div class="flex items-center gap-3 text-white/90 text-sm">
           <span class="hidden sm:inline text-white/70">Наши соцсети:</span>
-          <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" aria-label="Instagram" class="transition-colors hover:opacity-80" style="color:#E1306C;"><i class="fab fa-instagram"></i></a>
-          <a href="https://t.me/EcoTrimUA" target="_blank" aria-label="Telegram" class="transition-colors hover:opacity-80" style="color:#229ED9;"><i class="fab fa-telegram"></i></a>
-          <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" aria-label="YouTube" class="transition-colors hover:opacity-80" style="color:#FF0000;"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" aria-label="Instagram" class="transition-colors nav-social" style="color:#E1306C;"><i class="fab fa-instagram"></i></a>
+          <a href="https://t.me/EcoTrimUA" target="_blank" aria-label="Telegram" class="transition-colors nav-social" style="color:#229ED9;"><i class="fab fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" aria-label="YouTube" class="transition-colors nav-social" style="color:#FF0000;"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
     </div>
