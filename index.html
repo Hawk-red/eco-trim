@@ -705,137 +705,81 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
           <i class="fas fa-chevron-left text-sm"></i>
         </button>
         <!-- Track -->
+        <style>
+          .t-card{background:#fff;border:1px solid #e5e7eb;border-left:4px solid #4caf50;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.06);display:flex;flex-direction:column;justify-content:space-between;}
+          .t-stars{color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:12px;}
+          .t-text{color:#4b5563;font-size:.875rem;line-height:1.7;margin-bottom:20px;flex:1;}
+          .t-avatar{width:40px;height:40px;background:#1a5c38;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+          .t-name{font-weight:700;font-size:.875rem;color:#1a1a1a;}
+          .t-loc{font-size:.75rem;color:#9ca3af;}
+        </style>
         <div class="overflow-hidden">
           <div id="tTrack" class="flex gap-6 transition-transform duration-500 ease-in-out">
 
             <!-- 1 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Отличная работа! Обрезали большой каштан у нас во дворе. Всё аккуратно, быстро, убрали за собой. Дерево выглядит просто прекрасно. Рекомендую!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">А</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Анна Коваленко</p><p class="text-gray-400 text-xs">Київ, Оболонь</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Отличная работа! Обрезали большой каштан у нас во дворе. Всё аккуратно, быстро, убрали за собой. Дерево выглядит просто прекрасно. Рекомендую!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">А</span></div><div><p class="t-name">Анна Коваленко</p><p class="t-loc">Київ, Оболонь</p></div></div>
             </div>
-
             <!-- 2 -->
-            <div class="testimonial-card flex-shrink-0 bg-primary rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3 text-yellow-400">★★★★★</div>
-              <p class="text-white/85 leading-relaxed mb-5 text-sm">«Звернувся через Instagram. Хлопці приїхали наступного дня, зробили все якісно. Берізка тепер виглядає як мала виглядати. Дякую команді!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">М</span></div>
-                <div><p class="font-heading font-semibold text-white text-sm">Микола Петренко</p><p class="text-white/60 text-xs">Київська область</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Звернувся через Instagram. Хлопці приїхали наступного дня, зробили все якісно. Берізка тепер виглядає як мала виглядати. Дякую команді!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">М</span></div><div><p class="t-name">Микола Петренко</p><p class="t-loc">Київська область</p></div></div>
             </div>
-
             <!-- 3 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Профессиональная компания. Спасли старую яблоню, которую хотели срубить. Теперь цветёт каждый год. Это просто чудо! Всем советую EcoTrim.»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">О</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Ольга Сидоренко</p><p class="text-gray-400 text-xs">Київ, Печерськ</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Профессиональная компания. Спасли старую яблоню, которую хотели срубить. Теперь цветёт каждый год. Это просто чудо! Всем советую EcoTrim.»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">О</span></div><div><p class="t-name">Ольга Сидоренко</p><p class="t-loc">Київ, Печерськ</p></div></div>
             </div>
-
             <!-- 4 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Удалили аварийный тополь рядом с домом. Работали быстро и аккуратно, соседи даже не заметили. Вывезли всё до последней ветки. Цена разумная.»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">В</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Василь Мороз</p><p class="text-gray-400 text-xs">Київ, Дарниця</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Удалили аварийный тополь рядом с домом. Работали быстро и аккуратно, соседи даже не заметили. Вывезли всё до последней ветки. Цена разумная.»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">В</span></div><div><p class="t-name">Василь Мороз</p><p class="t-loc">Київ, Дарниця</p></div></div>
             </div>
-
             <!-- 5 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Формували крону декількох лип на нашій ділянці. Результат перевершив очікування — дерева стали красивими і здоровими. Дякую EcoTrim!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">І</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Ірина Бондаренко</p><p class="text-gray-400 text-xs">Київ, Святошин</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Формували крону декількох лип на нашій ділянці. Результат перевершив очікування — дерева стали красивими і здоровими. Дякую EcoTrim!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">І</span></div><div><p class="t-name">Ірина Бондаренко</p><p class="t-loc">Київ, Святошин</p></div></div>
             </div>
-
             <!-- 6 -->
-            <div class="testimonial-card flex-shrink-0 bg-primary rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3 text-yellow-400">★★★★★</div>
-              <p class="text-white/85 leading-relaxed mb-5 text-sm">«Обработали все деревья от паразитов. Специалист объяснил всё понятно, показал результат. Заказываем уже второй год подряд!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">Д</span></div>
-                <div><p class="font-heading font-semibold text-white text-sm">Дмитро Лисенко</p><p class="text-white/60 text-xs">Київ, Голосіїв</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Обработали все деревья от паразитов. Специалист объяснил всё понятно, показал результат. Заказываем уже второй год подряд!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Д</span></div><div><p class="t-name">Дмитро Лисенко</p><p class="t-loc">Київ, Голосіїв</p></div></div>
             </div>
-
             <!-- 7 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Омолодили старый грецкий орех на даче. Думали уже не спасти, а теперь дерево живёт и плодоносит! Ребята — профессионалы своего дела.»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">С</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Сергій Кравченко</p><p class="text-gray-400 text-xs">Київ, Позняки</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Омолодили старый грецкий орех на даче. Думали уже не спасти, а теперь дерево живёт и плодоносит! Ребята — профессионалы своего дела.»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">С</span></div><div><p class="t-name">Сергій Кравченко</p><p class="t-loc">Київ, Позняки</p></div></div>
             </div>
-
             <!-- 8 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Прибрали кілька старих дерев у дворі багатоповерхівки. Попередили сусідів, все зробили дуже обережно. Жодного пошкодження. Молодці!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">Н</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Наталія Шевченко</p><p class="text-gray-400 text-xs">Київ, Троєщина</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Прибрали кілька старих дерев у дворі багатоповерхівки. Попередили сусідів, все зробили дуже обережно. Жодного пошкодження. Молодці!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Н</span></div><div><p class="t-name">Наталія Шевченко</p><p class="t-loc">Київ, Троєщина</p></div></div>
             </div>
-
             <!-- 9 -->
-            <div class="testimonial-card flex-shrink-0 bg-primary rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3 text-yellow-400">★★★★★</div>
-              <p class="text-white/85 leading-relaxed mb-5 text-sm">«Сделали декоративную обрезку туй и кипарисов на участке. Теперь сад выглядит как на картинке. Спасибо за терпение и аккуратность!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">Т</span></div>
-                <div><p class="font-heading font-semibold text-white text-sm">Тетяна Романенко</p><p class="text-white/60 text-xs">Київ, Борщагівка</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Сделали декоративную обрезку туй и кипарисов на участке. Теперь сад выглядит как на картинке. Спасибо за терпение и аккуратность!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Т</span></div><div><p class="t-name">Тетяна Романенко</p><p class="t-loc">Київ, Борщагівка</p></div></div>
             </div>
-
             <!-- 10 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Вырезали омелу с нескольких деревьев. Работа сложная, на высоте, но справились отлично. Объяснили, как предотвратить повторное заражение.»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">Р</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Роман Гриценко</p><p class="text-gray-400 text-xs">Київ, Деміївка</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Вырезали омелу с нескольких деревьев. Работа сложная, на высоте, но справились отлично. Объяснили, как предотвратить повторное заражение.»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Р</span></div><div><p class="t-name">Роман Гриценко</p><p class="t-loc">Київ, Деміївка</p></div></div>
             </div>
-
             <!-- 11 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Підрізали гілки, які нависали над дахом. Приїхали вчасно, відпрацювали чітко. Інструмент тихий — не турбував сусідів. Дуже задоволені!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">Л</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Людмила Павленко</p><p class="text-gray-400 text-xs">Київ, Виноградар</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Підрізали гілки, які нависали над дахом. Приїхали вчасно, відпрацювали чітко. Інструмент тихий — не турбував сусідів. Дуже задоволені!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Л</span></div><div><p class="t-name">Людмила Павленко</p><p class="t-loc">Київ, Виноградар</p></div></div>
             </div>
-
             <!-- 12 -->
-            <div class="testimonial-card flex-shrink-0 bg-primary rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3 text-yellow-400">★★★★★</div>
-              <p class="text-white/85 leading-relaxed mb-5 text-sm">«Замовляли санітарну обрізку саду. Хлопці огляділи кожне дерево, порадили що залишити, а що прибрати. Результат — сад як новий!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">О</span></div>
-                <div><p class="font-heading font-semibold text-white text-sm">Олег Ткаченко</p><p class="text-white/60 text-xs">Київська область, Бровари</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Замовляли санітарну обрізку саду. Хлопці огляділи кожне дерево, порадили що залишити, а що прибрати. Результат — сад як новий!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">О</span></div><div><p class="t-name">Олег Ткаченко</p><p class="t-loc">Київська область, Бровари</p></div></div>
             </div>
-
             <!-- 13 -->
-            <div class="testimonial-card flex-shrink-0 bg-light rounded-2xl p-7 shadow-md" style="width:calc((100% - 48px)/3)">
-              <div class="flex gap-1 mb-3">★★★★★</div>
-              <p class="text-gray-600 leading-relaxed mb-5 text-sm">«Удалили сухостойную акацию вплотную к забору — задача была непростой. Справились без единого повреждения. Цена, качество, сроки — всё на 5!»</p>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-sm">К</span></div>
-                <div><p class="font-heading font-semibold text-dark text-sm">Катерина Власенко</p><p class="text-gray-400 text-xs">Київ, Солом'янка</p></div>
-              </div>
+            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
+              <div><div class="t-stars">★★★★★</div><p class="t-text">«Удалили сухостойную акацию вплотную к забору — задача была непростой. Справились без единого повреждения. Цена, качество, сроки — всё на 5!»</p></div>
+              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">К</span></div><div><p class="t-name">Катерина Власенко</p><p class="t-loc">Київ, Солом'янка</p></div></div>
             </div>
 
           </div>
