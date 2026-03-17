@@ -86,57 +86,85 @@
 </head>
 
 <body
-  x-data="{ scrolled: false, mobileOpen: false }"
+  x-data="{ scrolled: false }"
   x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 80 })"
 >
 
-  <!-- ===== NAVBAR ===== -->
-  <nav
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark"
-    :class="scrolled ? 'navbar-scrolled' : ''"
+  <!-- ===== HEADER ===== -->
+  <header
+    class="fixed top-0 left-0 right-0 z-50"
+    x-data="{ mobileOpen: false }"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 lg:h-20">
-        <a href="index.html" class="flex items-center gap-2">
-          <div class="w-9 h-9 bg-accent rounded-full flex items-center justify-center shadow-lg">
-            <i class="fas fa-leaf text-white text-sm"></i>
+    <!-- Top bar -->
+    <div class="bg-primary py-2">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div class="flex items-center gap-4 text-white/90 text-sm">
+          <a href="tel:+380932935353" class="flex items-center gap-1.5 hover:text-white transition-colors">
+            <i class="fas fa-phone text-xs"></i> 093 293 53 53
+          </a>
+          <a href="mailto:ecotrimua@gmail.com" class="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+            <i class="fas fa-envelope text-xs"></i> ecotrimua@gmail.com
+          </a>
+        </div>
+        <div class="flex items-center gap-3 text-white/90 text-sm">
+          <span class="hidden sm:inline text-white/70">Наши соцсети:</span>
+          <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" aria-label="Instagram" class="hover:text-pink-300 transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" aria-label="YouTube" class="hover:text-red-400 transition-colors"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100095185410854" target="_blank" aria-label="Facebook" class="hover:text-blue-300 transition-colors"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Nav bar -->
+    <nav class="bg-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center gap-2">
+            <div class="w-9 h-9 bg-primary rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+              <svg viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="22" r="11" fill="white"/>
+                <circle cx="10" cy="13" r="5" fill="#1a1a1a"/>
+                <circle cx="30" cy="13" r="5" fill="#1a1a1a"/>
+                <circle cx="10" cy="13" r="2.5" fill="#2a2a2a"/>
+                <circle cx="30" cy="13" r="2.5" fill="#2a2a2a"/>
+                <ellipse cx="16" cy="20" rx="3.5" ry="4" fill="#1a1a1a" transform="rotate(-10 16 20)"/>
+                <ellipse cx="24" cy="20" rx="3.5" ry="4" fill="#1a1a1a" transform="rotate(10 24 20)"/>
+                <circle cx="16.5" cy="19" r="1.2" fill="white"/>
+                <circle cx="24.5" cy="19" r="1.2" fill="white"/>
+                <ellipse cx="20" cy="25" rx="2" ry="1.3" fill="#1a1a1a"/>
+                <path d="M17.5 26.5 Q20 28.5 22.5 26.5" stroke="#1a1a1a" stroke-width="1" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="font-heading font-bold text-xl text-dark">Eco<span class="text-primary">Trim</span></span>
+          </a>
+          <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="text-gray-700 hover:text-primary font-medium transition-colors duration-200">Главная</a>
+            <a href="about.html" class="text-gray-700 hover:text-primary font-medium transition-colors duration-200">О нас</a>
+            <a href="portfolio.html" class="text-gray-700 hover:text-primary font-medium transition-colors duration-200">Наши работы</a>
+            <a href="contact.html" class="text-primary font-semibold border-b-2 border-primary pb-0.5 font-medium transition-colors duration-200">Контакты</a>
           </div>
-          <span class="font-heading font-bold text-xl text-white">Eco<span class="text-accent">Trim</span></span>
-        </a>
-
-        <div class="hidden lg:flex items-center gap-8">
-          <a href="index.html" class="text-white/80 hover:text-accent font-medium transition-colors duration-200">Главная</a>
-          <a href="about.html" class="text-white/80 hover:text-accent font-medium transition-colors duration-200">О нас</a>
-          <a href="portfolio.html" class="text-white/80 hover:text-accent font-medium transition-colors duration-200">Наши работы</a>
-          <a href="contact.html" class="text-accent font-semibold border-b-2 border-accent pb-0.5">Контакты</a>
+          <div class="hidden lg:flex items-center">
+            <a href="contact.html" class="bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-lg hover:-translate-y-0.5 text-sm">
+              Бесплатная консультация <i class="fas fa-arrow-right ml-1.5 text-xs"></i>
+            </a>
+          </div>
+          <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-gray-800 p-2" aria-label="Меню">
+            <div class="w-6 h-0.5 bg-gray-800 mb-1.5 transition-all duration-300" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></div>
+            <div class="w-6 h-0.5 bg-gray-800 mb-1.5 transition-all duration-300" :class="mobileOpen ? 'opacity-0' : ''"></div>
+            <div class="w-6 h-0.5 bg-gray-800 transition-all duration-300" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></div>
+          </button>
         </div>
-
-        <div class="hidden lg:flex items-center gap-4">
-          <a href="tel:+380932935353" class="text-white/80 hover:text-accent font-medium text-sm transition-colors">
-            <i class="fas fa-phone mr-1"></i> 093 293 53 53
-          </a>
-          <a href="contact.html" class="bg-accent hover:bg-green-400 text-white font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-lg hover:-translate-y-0.5 text-sm">
-            Бесплатная смета <i class="fas fa-arrow-right ml-1.5 text-xs"></i>
-          </a>
+      </div>
+      <div x-show="mobileOpen" x-transition class="lg:hidden bg-white border-t border-gray-100">
+        <div class="px-4 py-4 flex flex-col gap-2">
+          <a href="index.html" class="text-gray-700 hover:text-primary py-2.5 font-medium border-b border-gray-100">Главная</a>
+          <a href="about.html" class="text-gray-700 hover:text-primary py-2.5 font-medium border-b border-gray-100">О нас</a>
+          <a href="portfolio.html" class="text-gray-700 hover:text-primary py-2.5 font-medium border-b border-gray-100">Наши работы</a>
+          <a href="contact.html" class="text-primary font-semibold py-2.5 font-medium border-b border-gray-100">Контакты</a>
+          <a href="contact.html" class="mt-3 bg-primary text-white font-semibold py-3 px-5 rounded-full text-center">Бесплатная консультация</a>
         </div>
-
-        <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-white p-2" aria-label="Меню">
-          <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></div>
-          <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300" :class="mobileOpen ? 'opacity-0' : ''"></div>
-          <div class="w-6 h-0.5 bg-white transition-all duration-300" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></div>
-        </button>
       </div>
-    </div>
-    <div x-show="mobileOpen" x-transition class="lg:hidden bg-dark border-t border-white/10">
-      <div class="px-4 py-4 flex flex-col gap-2">
-        <a href="index.html" class="text-white/80 hover:text-accent py-2.5 font-medium border-b border-white/5">Главная</a>
-        <a href="about.html" class="text-white/80 hover:text-accent py-2.5 font-medium border-b border-white/5">О нас</a>
-        <a href="portfolio.html" class="text-white/80 hover:text-accent py-2.5 font-medium border-b border-white/5">Наши работы</a>
-        <a href="contact.html" class="text-accent py-2.5 font-semibold border-b border-white/5">Контакты</a>
-        <a href="contact.html" class="mt-3 bg-accent text-white font-semibold py-3 px-5 rounded-full text-center">Бесплатная смета</a>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- ===== PAGE HERO ===== -->
   <section class="relative h-64 lg:h-80 flex items-end overflow-hidden">
@@ -168,7 +196,7 @@
           </div>
           <h3 class="font-heading font-bold text-dark text-base mb-1">Телефон</h3>
           <a href="tel:+380932935353" class="text-primary font-semibold hover:text-accent transition-colors">093 293 53 53</a>
-          <p class="text-gray-400 text-xs mt-1">Відповімо за 30 хвилин</p>
+          <p class="text-gray-400 text-xs mt-1">Ответим за 30 минут</p>
         </div>
 
         <div class="contact-info-card bg-white rounded-2xl p-6 shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
@@ -177,7 +205,7 @@
           </div>
           <h3 class="font-heading font-bold text-dark text-base mb-1">Email</h3>
           <a href="mailto:ecotrimua@gmail.com" class="text-primary font-semibold hover:text-accent transition-colors text-sm">ecotrimua@gmail.com</a>
-          <p class="text-gray-400 text-xs mt-1">Відповідь протягом дня</p>
+          <p class="text-gray-400 text-xs mt-1">Ответ в течение дня</p>
         </div>
 
         <div class="contact-info-card bg-white rounded-2xl p-6 shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
@@ -185,18 +213,10 @@
             <i class="fas fa-map-marker-alt text-accent text-xl"></i>
           </div>
           <h3 class="font-heading font-bold text-dark text-base mb-1">Адреса</h3>
-          <p class="text-primary font-semibold text-sm">Київ та область</p>
-          <p class="text-gray-400 text-xs mt-1">Виїзд по всьому місту</p>
+          <p class="text-primary font-semibold text-sm">Киев и область</p>
+          <p class="text-gray-400 text-xs mt-1">Выезд по всему городу</p>
         </div>
 
-        <div class="contact-info-card bg-white rounded-2xl p-6 shadow-md text-center" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-clock text-accent text-xl"></i>
-          </div>
-          <h3 class="font-heading font-bold text-dark text-base mb-1">Режим роботи</h3>
-          <p class="text-primary font-semibold text-sm">Пн–Сб: 08:00–20:00</p>
-          <p class="text-gray-400 text-xs mt-1">Нд: 09:00–17:00</p>
-        </div>
 
       </div>
     </div>
@@ -241,64 +261,38 @@
 
               <!-- Phone -->
               <div class="mb-5">
-                <label for="phone" class="form-label">Телефон <span class="text-red-500">*</span></label>
+                <label for="phone" class="form-label">Телефон</label>
                 <div class="relative">
                   <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><i class="fas fa-phone"></i></span>
                   <input
                     type="tel"
                     id="phone"
                     x-model="form.phone"
-                    @blur="validate('phone')"
-                    :class="errors.phone ? 'form-input error pl-9' : (touched.phone && !errors.phone ? 'form-input success pl-9' : 'form-input pl-9')"
+                    class="form-input pl-9"
                     placeholder="+38 093 293 53 53"
-                    aria-required="true"
-                    :aria-invalid="errors.phone ? 'true' : 'false'"
                   />
                 </div>
-                <p class="error-msg" :class="errors.phone ? 'show' : ''" x-text="errors.phone"></p>
               </div>
 
-              <!-- Email -->
+              <!-- Messenger -->
               <div class="mb-5">
-                <label for="email" class="form-label">Email</label>
-                <div class="relative">
-                  <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><i class="fas fa-envelope"></i></span>
-                  <input
-                    type="email"
-                    id="email"
-                    x-model="form.email"
-                    @blur="validate('email')"
-                    :class="errors.email ? 'form-input error pl-9' : (touched.email && form.email && !errors.email ? 'form-input success pl-9' : 'form-input pl-9')"
-                    placeholder="ivan@gmail.com"
-                    :aria-invalid="errors.email ? 'true' : 'false'"
-                  />
-                </div>
-                <p class="error-msg" :class="errors.email ? 'show' : ''" x-text="errors.email"></p>
-              </div>
-
-              <!-- Service type -->
-              <div class="mb-5">
-                <label for="service" class="form-label">Тип услуги <span class="text-red-500">*</span></label>
+                <label for="messenger" class="form-label">Куда ответить <span class="text-red-500">*</span></label>
                 <div class="relative">
                   <select
-                    id="service"
-                    x-model="form.service"
-                    @blur="validate('service')"
-                    :class="errors.service ? 'form-input error appearance-none pr-10' : (touched.service && !errors.service ? 'form-input success appearance-none pr-10' : 'form-input appearance-none pr-10')"
+                    id="messenger"
+                    x-model="form.messenger"
+                    @blur="validate('messenger')"
+                    :class="errors.messenger ? 'form-input error appearance-none pr-10' : (touched.messenger && !errors.messenger ? 'form-input success appearance-none pr-10' : 'form-input appearance-none pr-10')"
                     aria-required="true"
                   >
-                    <option value="">Выберите услугу...</option>
-                    <option value="landscaping">Ландшафтная формовка</option>
-                    <option value="sanitary">Санитарная обрезка</option>
-                    <option value="crown">Формирование кроны</option>
-                    <option value="removal">Удаление мёртвых веток</option>
-                    <option value="rescue">Спасение дерева</option>
-                    <option value="consult">Бесплатная консультация</option>
-                    <option value="other">Другое</option>
+                    <option value="">Выберите мессенджер...</option>
+                    <option value="telegram">Telegram</option>
+                    <option value="viber">Viber</option>
+                    <option value="callback">Перезвонить вам</option>
                   </select>
                   <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"><i class="fas fa-chevron-down text-xs"></i></span>
                 </div>
-                <p class="error-msg" :class="errors.service ? 'show' : ''" x-text="errors.service"></p>
+                <p class="error-msg" :class="errors.messenger ? 'show' : ''" x-text="errors.messenger"></p>
               </div>
 
               <!-- Message -->
@@ -319,7 +313,7 @@
                 :disabled="submitting"
                 class="w-full bg-accent hover:bg-green-400 disabled:opacity-70 text-white font-bold py-4 px-6 rounded-xl text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2"
               >
-                <span x-show="!submitting">Отправить заявку <i class="fas fa-arrow-right text-sm"></i></span>
+                <span x-show="!submitting">Отправить <i class="fas fa-arrow-right text-sm"></i></span>
                 <span x-show="submitting" class="flex items-center gap-2">
                   <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
                   Отправка...
@@ -410,46 +404,6 @@
             </div>
           </div>
 
-          <!-- Working hours detailed -->
-          <div class="bg-primary rounded-2xl p-6 shadow-md">
-            <h3 class="font-heading font-bold text-white text-lg mb-4 flex items-center gap-2">
-              <i class="fas fa-clock text-accent"></i> Режим роботи
-            </h3>
-            <div class="space-y-2">
-              <div class="flex justify-between text-sm">
-                <span class="text-white/70">Понеділок</span>
-                <span class="text-white font-medium">08:00 – 20:00</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-white/70">Вівторок</span>
-                <span class="text-white font-medium">08:00 – 20:00</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-white/70">Середа</span>
-                <span class="text-white font-medium">08:00 – 20:00</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-white/70">Четвер</span>
-                <span class="text-white font-medium">08:00 – 20:00</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-white/70">П'ятниця</span>
-                <span class="text-white font-medium">08:00 – 20:00</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-white/70">Субота</span>
-                <span class="text-white font-medium">08:00 – 20:00</span>
-              </div>
-              <div class="border-t border-white/10 pt-2 flex justify-between text-sm">
-                <span class="text-white/70">Неділя</span>
-                <span class="text-accent font-medium">09:00 – 17:00</span>
-              </div>
-            </div>
-            <div class="mt-4 bg-accent/20 rounded-xl p-3 flex items-center gap-2">
-              <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-              <p class="text-white text-xs">Зараз ми приймаємо заявки</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -526,53 +480,69 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="bg-dark text-gray-300 pt-16 pb-8">
+  <footer class="bg-primary text-white pt-14 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- Contacts -->
         <div>
-          <a href="index.html" class="flex items-center gap-2 mb-4">
-            <div class="w-9 h-9 bg-accent rounded-full flex items-center justify-center">
-              <i class="fas fa-leaf text-white text-sm"></i>
-            </div>
-            <span class="font-heading font-bold text-xl text-white">Eco<span class="text-accent">Trim</span></span>
-          </a>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Профессиональная обрезка и уход за деревьями в Киеве и области с 2015 года.</p>
-          <div class="flex gap-3">
-            <a href="https://t.me/EcoTrimUA" target="_blank" aria-label="Telegram" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-telegram text-sm"></i></a>
-            <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" aria-label="Instagram" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-instagram text-sm"></i></a>
-            <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" aria-label="YouTube" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-youtube text-sm"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=100095185410854" target="_blank" aria-label="Facebook" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-facebook-f text-sm"></i></a>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Контакты</h4>
+          <div class="space-y-3">
+            <a href="tel:+380932935353" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <i class="fas fa-phone text-accent flex-shrink-0"></i> 093 293 53 53
+            </a>
+            <a href="mailto:ecotrimua@gmail.com" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <i class="fas fa-envelope text-accent flex-shrink-0"></i> ecotrimua@gmail.com
+            </a>
+            <p class="flex items-center gap-3 text-white/80 text-sm">
+              <i class="fas fa-map-marker-alt text-accent flex-shrink-0"></i> Киев, Украина 🇺🇦
+            </p>
           </div>
         </div>
+        <!-- Services -->
         <div>
-          <h4 class="font-heading font-semibold text-white mb-4">Услуги</h4>
-          <a href="index.html#services" class="footer-link text-sm">Ландшафтная формовка</a>
-          <a href="index.html#services" class="footer-link text-sm">Санитарная обрезка</a>
-          <a href="index.html#services" class="footer-link text-sm">Формирование кроны</a>
-          <a href="index.html#services" class="footer-link text-sm">Удаление деревьев</a>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Услуги</h4>
+          <div class="space-y-2">
+            <a href="index.html#services" class="block text-white/80 hover:text-white transition-colors text-sm">Обрезка Деревьев</a>
+            <a href="index.html#services" class="block text-white/80 hover:text-white transition-colors text-sm">Спасение Деревьев</a>
+            <a href="contact.html" class="block text-white/80 hover:text-white transition-colors text-sm">Консультация</a>
+          </div>
         </div>
+        <!-- Social Media -->
         <div>
-          <h4 class="font-heading font-semibold text-white mb-4">Навигация</h4>
-          <a href="index.html" class="footer-link text-sm">Главная</a>
-          <a href="about.html" class="footer-link text-sm">О компании</a>
-          <a href="portfolio.html" class="footer-link text-sm">Наши работы</a>
-          <a href="contact.html" class="footer-link text-sm">Контакты</a>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Мы в соцсетях</h4>
+          <div class="space-y-3">
+            <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                <i class="fab fa-instagram text-white"></i>
+              </div>
+              Instagram
+            </a>
+            <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <div class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fab fa-youtube text-white"></i>
+              </div>
+              YouTube
+            </a>
+            <a href="https://t.me/EcoTrimUA" target="_blank" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: #229ED9;">
+                <i class="fab fa-telegram text-white"></i>
+              </div>
+              Telegram
+            </a>
+          </div>
         </div>
+        <!-- Quick Links -->
         <div>
-          <h4 class="font-heading font-semibold text-white mb-4">Контакты</h4>
-          <a href="tel:+380932935353" class="footer-link text-sm flex items-center gap-2"><i class="fas fa-phone text-accent text-xs"></i> 093 293 53 53</a>
-          <a href="mailto:ecotrimua@gmail.com" class="footer-link text-sm flex items-center gap-2"><i class="fas fa-envelope text-accent text-xs"></i> ecotrimua@gmail.com</a>
-          <p class="text-sm text-gray-400 flex items-center gap-2 mt-1"><i class="fas fa-map-marker-alt text-accent text-xs"></i> Київ, Україна</p>
-          <div class="mt-4 bg-white/5 rounded-xl p-4 text-sm">
-            <p class="text-white font-medium mb-1">Режим роботи</p>
-            <p class="text-gray-400">Пн–Сб: 08:00 – 20:00</p>
-            <p class="text-gray-400">Нд: 09:00 – 17:00</p>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Быстрые ссылки</h4>
+          <div class="space-y-2">
+            <a href="about.html" class="block text-white/80 hover:text-white transition-colors text-sm">О Нас</a>
+            <a href="contact.html" class="block text-white/80 hover:text-white transition-colors text-sm">Контакты</a>
+            <a href="portfolio.html" class="block text-white/80 hover:text-white transition-colors text-sm">Наши Работы</a>
           </div>
         </div>
       </div>
-      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-sm">&copy; 2025 EcoTrim. Всі права захищені.</p>
-        <p class="text-gray-600 text-xs">Обрізка дерев у Києві та Київській області</p>
+      <div class="border-t border-white/20 pt-8 text-center">
+        <p class="text-white/60 text-sm">&copy; 2025 EcoTrim. Все права защищены.</p>
       </div>
     </div>
   </footer>
@@ -596,9 +566,9 @@
 
     function contactForm() {
       return {
-        form: { name: '', phone: '', email: '', service: '', message: '' },
-        errors: { name: '', phone: '', email: '', service: '' },
-        touched: { name: false, phone: false, email: false, service: false },
+        form: { name: '', phone: '', messenger: '', message: '' },
+        errors: { name: '', messenger: '' },
+        touched: { name: false, messenger: false },
         submitting: false,
         submitted: false,
 
@@ -607,34 +577,24 @@
           if (field === 'name') {
             this.errors.name = this.form.name.trim().length < 2 ? 'Введите ваше имя (минимум 2 символа)' : '';
           }
-          if (field === 'phone') {
-            const clean = this.form.phone.replace(/\D/g, '');
-            this.errors.phone = clean.length < 10 ? 'Введите корректный номер телефона' : '';
-          }
-          if (field === 'email' && this.form.email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            this.errors.email = !re.test(this.form.email) ? 'Введите корректный email адрес' : '';
-          }
-          if (field === 'service') {
-            this.errors.service = !this.form.service ? 'Выберите тип услуги' : '';
+          if (field === 'messenger') {
+            this.errors.messenger = !this.form.messenger ? 'Выберите способ связи' : '';
           }
         },
 
         validateAll() {
-          ['name', 'phone', 'service'].forEach(f => this.validate(f));
-          if (this.form.email) this.validate('email');
-          return !this.errors.name && !this.errors.phone && !this.errors.email && !this.errors.service;
+          ['name', 'messenger'].forEach(f => this.validate(f));
+          return !this.errors.name && !this.errors.messenger;
         },
 
         submitForm() {
           if (!this.validateAll()) return;
           this.submitting = true;
-          // Simulate async send
           setTimeout(() => {
             this.submitting = false;
             this.submitted = true;
-            this.form = { name: '', phone: '', email: '', service: '', message: '' };
-            this.touched = { name: false, phone: false, email: false, service: false };
+            this.form = { name: '', phone: '', messenger: '', message: '' };
+            this.touched = { name: false, messenger: false };
           }, 1500);
         }
       }

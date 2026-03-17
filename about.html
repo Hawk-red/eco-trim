@@ -95,57 +95,85 @@
 </head>
 
 <body
-  x-data="{ scrolled: false, mobileOpen: false }"
+  x-data="{ scrolled: false }"
   x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 80 })"
 >
 
-  <!-- ===== NAVBAR ===== -->
-  <nav
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark"
-    :class="scrolled ? 'navbar-scrolled' : ''"
+  <!-- ===== HEADER ===== -->
+  <header
+    class="fixed top-0 left-0 right-0 z-50"
+    x-data="{ mobileOpen: false }"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 lg:h-20">
-        <a href="index.html" class="flex items-center gap-2">
-          <div class="w-9 h-9 bg-accent rounded-full flex items-center justify-center shadow-lg">
-            <i class="fas fa-leaf text-white text-sm"></i>
+    <!-- Top bar -->
+    <div class="bg-primary py-2">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div class="flex items-center gap-4 text-white/90 text-sm">
+          <a href="tel:+380932935353" class="flex items-center gap-1.5 hover:text-white transition-colors">
+            <i class="fas fa-phone text-xs"></i> 093 293 53 53
+          </a>
+          <a href="mailto:ecotrimua@gmail.com" class="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+            <i class="fas fa-envelope text-xs"></i> ecotrimua@gmail.com
+          </a>
+        </div>
+        <div class="flex items-center gap-3 text-white/90 text-sm">
+          <span class="hidden sm:inline text-white/70">Наши соцсети:</span>
+          <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" aria-label="Instagram" class="hover:text-pink-300 transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" aria-label="YouTube" class="hover:text-red-400 transition-colors"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100095185410854" target="_blank" aria-label="Facebook" class="hover:text-blue-300 transition-colors"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Nav bar -->
+    <nav class="bg-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center gap-2">
+            <div class="w-9 h-9 bg-primary rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+              <svg viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="22" r="11" fill="white"/>
+                <circle cx="10" cy="13" r="5" fill="#1a1a1a"/>
+                <circle cx="30" cy="13" r="5" fill="#1a1a1a"/>
+                <circle cx="10" cy="13" r="2.5" fill="#2a2a2a"/>
+                <circle cx="30" cy="13" r="2.5" fill="#2a2a2a"/>
+                <ellipse cx="16" cy="20" rx="3.5" ry="4" fill="#1a1a1a" transform="rotate(-10 16 20)"/>
+                <ellipse cx="24" cy="20" rx="3.5" ry="4" fill="#1a1a1a" transform="rotate(10 24 20)"/>
+                <circle cx="16.5" cy="19" r="1.2" fill="white"/>
+                <circle cx="24.5" cy="19" r="1.2" fill="white"/>
+                <ellipse cx="20" cy="25" rx="2" ry="1.3" fill="#1a1a1a"/>
+                <path d="M17.5 26.5 Q20 28.5 22.5 26.5" stroke="#1a1a1a" stroke-width="1" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="font-heading font-bold text-xl text-dark">Eco<span class="text-primary">Trim</span></span>
+          </a>
+          <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="text-gray-700 hover:text-primary font-medium transition-colors duration-200">Главная</a>
+            <a href="about.html" class="text-primary font-semibold border-b-2 border-primary pb-0.5 font-medium transition-colors duration-200">О нас</a>
+            <a href="portfolio.html" class="text-gray-700 hover:text-primary font-medium transition-colors duration-200">Наши работы</a>
+            <a href="contact.html" class="text-gray-700 hover:text-primary font-medium transition-colors duration-200">Контакты</a>
           </div>
-          <span class="font-heading font-bold text-xl text-white">Eco<span class="text-accent">Trim</span></span>
-        </a>
-
-        <div class="hidden lg:flex items-center gap-8">
-          <a href="index.html" class="text-white/80 hover:text-accent font-medium transition-colors duration-200">Главная</a>
-          <a href="about.html" class="text-accent font-semibold border-b-2 border-accent pb-0.5">О нас</a>
-          <a href="portfolio.html" class="text-white/80 hover:text-accent font-medium transition-colors duration-200">Наши работы</a>
-          <a href="contact.html" class="text-white/80 hover:text-accent font-medium transition-colors duration-200">Контакты</a>
+          <div class="hidden lg:flex items-center">
+            <a href="contact.html" class="bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-lg hover:-translate-y-0.5 text-sm">
+              Бесплатная консультация <i class="fas fa-arrow-right ml-1.5 text-xs"></i>
+            </a>
+          </div>
+          <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-gray-800 p-2" aria-label="Меню">
+            <div class="w-6 h-0.5 bg-gray-800 mb-1.5 transition-all duration-300" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></div>
+            <div class="w-6 h-0.5 bg-gray-800 mb-1.5 transition-all duration-300" :class="mobileOpen ? 'opacity-0' : ''"></div>
+            <div class="w-6 h-0.5 bg-gray-800 transition-all duration-300" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></div>
+          </button>
         </div>
-
-        <div class="hidden lg:flex items-center gap-4">
-          <a href="tel:+380932935353" class="text-white/80 hover:text-accent font-medium text-sm transition-colors">
-            <i class="fas fa-phone mr-1"></i> 093 293 53 53
-          </a>
-          <a href="contact.html" class="bg-accent hover:bg-green-400 text-white font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-lg hover:-translate-y-0.5 text-sm">
-            Бесплатная смета <i class="fas fa-arrow-right ml-1.5 text-xs"></i>
-          </a>
+      </div>
+      <div x-show="mobileOpen" x-transition class="lg:hidden bg-white border-t border-gray-100">
+        <div class="px-4 py-4 flex flex-col gap-2">
+          <a href="index.html" class="text-gray-700 hover:text-primary py-2.5 font-medium border-b border-gray-100">Главная</a>
+          <a href="about.html" class="text-primary font-semibold py-2.5 font-medium border-b border-gray-100">О нас</a>
+          <a href="portfolio.html" class="text-gray-700 hover:text-primary py-2.5 font-medium border-b border-gray-100">Наши работы</a>
+          <a href="contact.html" class="text-gray-700 hover:text-primary py-2.5 font-medium border-b border-gray-100">Контакты</a>
+          <a href="contact.html" class="mt-3 bg-primary text-white font-semibold py-3 px-5 rounded-full text-center">Бесплатная консультация</a>
         </div>
-
-        <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-white p-2" aria-label="Меню">
-          <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></div>
-          <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300" :class="mobileOpen ? 'opacity-0' : ''"></div>
-          <div class="w-6 h-0.5 bg-white transition-all duration-300" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></div>
-        </button>
       </div>
-    </div>
-    <div x-show="mobileOpen" x-transition class="lg:hidden bg-dark border-t border-white/10">
-      <div class="px-4 py-4 flex flex-col gap-2">
-        <a href="index.html" class="text-white/80 hover:text-accent py-2.5 font-medium border-b border-white/5">Главная</a>
-        <a href="about.html" class="text-accent py-2.5 font-semibold border-b border-white/5">О нас</a>
-        <a href="portfolio.html" class="text-white/80 hover:text-accent py-2.5 font-medium border-b border-white/5">Наши работы</a>
-        <a href="contact.html" class="text-white/80 hover:text-accent py-2.5 font-medium border-b border-white/5">Контакты</a>
-        <a href="contact.html" class="mt-3 bg-accent text-white font-semibold py-3 px-5 rounded-full text-center">Бесплатная смета</a>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- ===== PAGE HERO ===== -->
   <section class="relative h-72 lg:h-96 flex items-end overflow-hidden">
@@ -182,7 +210,7 @@
           <div class="absolute -bottom-6 -right-6 bg-primary rounded-2xl p-6 shadow-2xl hidden lg:block">
             <div class="text-center">
               <p class="font-heading font-extrabold text-accent text-3xl">2015</p>
-              <p class="text-white/70 text-sm">Рік заснування</p>
+              <p class="text-white/70 text-sm">Год основания</p>
             </div>
           </div>
         </div>
@@ -208,15 +236,15 @@
           <div class="grid grid-cols-3 gap-4 mb-8">
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
               <p class="font-heading font-extrabold text-primary text-2xl">218+</p>
-              <p class="text-gray-500 text-xs mt-0.5">Проектів</p>
+              <p class="text-gray-500 text-xs mt-0.5">Проектов</p>
             </div>
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
               <p class="font-heading font-extrabold text-primary text-2xl">10</p>
-              <p class="text-gray-500 text-xs mt-0.5">Років досвіду</p>
+              <p class="text-gray-500 text-xs mt-0.5">Лет опыта</p>
             </div>
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
               <p class="font-heading font-extrabold text-primary text-2xl">100%</p>
-              <p class="text-gray-500 text-xs mt-0.5">Задоволених</p>
+              <p class="text-gray-500 text-xs mt-0.5">Довольных</p>
             </div>
           </div>
 
@@ -384,7 +412,7 @@
               src="https://res.cloudinary.com/dgesovnb4/image/upload/ar_1:1,c_fill,g_auto,h_400,w_400/v1690038957/Eco%20-%20Trim/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2023-07-22_%D0%B2_18.08.23_iygq22.png"
               alt="Артём — старший арборист EcoTrim"
               loading="lazy"
-              class="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+              class="w-full h-56 object-cover object-top transition-transform duration-500 hover:scale-105"
             />
             <div class="absolute inset-0 bg-primary/80 team-social flex items-center justify-center gap-3">
               <a href="https://t.me/EcoTrimUA" target="_blank" aria-label="Telegram" class="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center text-white transition-colors">
@@ -409,7 +437,7 @@
               src="https://res.cloudinary.com/dgesovnb4/image/upload/ar_1:1,c_fill,g_auto,h_400,w_400/v1690038957/Eco%20-%20Trim/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2023-07-22_%D0%B2_18.10.40_ao1qpi.png"
               alt="Дмитро — арборист EcoTrim"
               loading="lazy"
-              class="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+              class="w-full h-56 object-cover object-top transition-transform duration-500 hover:scale-105"
             />
             <div class="absolute inset-0 bg-primary/80 team-social flex items-center justify-center gap-3">
               <a href="https://t.me/EcoTrimUA" target="_blank" aria-label="Telegram" class="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center text-white transition-colors">
@@ -421,9 +449,9 @@
             </div>
           </div>
           <div class="p-5">
-            <h3 class="font-heading font-bold text-dark text-lg">Дмитро В.</h3>
+            <h3 class="font-heading font-bold text-dark text-lg">Дмитрий В.</h3>
             <p class="text-accent text-sm font-medium mt-0.5">Арборист</p>
-            <p class="text-gray-500 text-xs mt-2 leading-relaxed">Спеціаліст з санітарної обрізки та фітопатології</p>
+            <p class="text-gray-500 text-xs mt-2 leading-relaxed">Специалист по санитарной обрезке и фитопатологии</p>
           </div>
         </div>
 
@@ -434,7 +462,7 @@
               src="https://res.cloudinary.com/dgesovnb4/image/upload/ar_1:1,c_fill,e_auto_contrast,g_auto,h_400,w_400/v1690038958/Eco%20-%20Trim/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2023-07-22_%D0%B2_16.59.26_gpvrx7.png"
               alt="Олексій — ландшафтний спеціаліст"
               loading="lazy"
-              class="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+              class="w-full h-56 object-cover object-top transition-transform duration-500 hover:scale-105"
             />
             <div class="absolute inset-0 bg-primary/80 team-social flex items-center justify-center gap-3">
               <a href="https://t.me/EcoTrimUA" target="_blank" aria-label="Telegram" class="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center text-white transition-colors">
@@ -446,9 +474,9 @@
             </div>
           </div>
           <div class="p-5">
-            <h3 class="font-heading font-bold text-dark text-lg">Олексій М.</h3>
-            <p class="text-accent text-sm font-medium mt-0.5">Ландшафтний фахівець</p>
-            <p class="text-gray-500 text-xs mt-2 leading-relaxed">Ландшафтний дизайн та формування крон</p>
+            <h3 class="font-heading font-bold text-dark text-lg">Алексей М.</h3>
+            <p class="text-accent text-sm font-medium mt-0.5">Ландшафтный специалист</p>
+            <p class="text-gray-500 text-xs mt-2 leading-relaxed">Ландшафтный дизайн и формирование крон</p>
           </div>
         </div>
 
@@ -502,46 +530,8 @@
     </div>
   </section>
 
-  <!-- ===== CERTIFICATIONS ===== -->
-  <section class="py-16 bg-primary">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10" data-aos="fade-up">
-        <h2 class="font-heading font-extrabold text-white text-2xl lg:text-3xl">Сертификаты и лицензии</h2>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i class="fas fa-certificate text-accent text-xl"></i>
-          </div>
-          <p class="text-white font-semibold text-sm">ISA Certified Arborist</p>
-          <p class="text-white/60 text-xs mt-1">International Society of Arboriculture</p>
-        </div>
-        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i class="fas fa-shield-alt text-accent text-xl"></i>
-          </div>
-          <p class="text-white font-semibold text-sm">Охорона праці</p>
-          <p class="text-white/60 text-xs mt-1">Державний дозвіл на виконання робіт</p>
-        </div>
-        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i class="fas fa-leaf text-accent text-xl"></i>
-          </div>
-          <p class="text-white font-semibold text-sm">Еко-стандарт</p>
-          <p class="text-white/60 text-xs mt-1">Нульові викиди під час роботи</p>
-        </div>
-        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i class="fas fa-star text-accent text-xl"></i>
-          </div>
-          <p class="text-white font-semibold text-sm">5★ рейтинг</p>
-          <p class="text-white/60 text-xs mt-1">Google та Instagram відгуки</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== CTA ===== -->
+<!-- ===== CTA ===== -->
   <section class="py-16 lg:py-20 bg-dark">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
       <h2 class="font-heading font-extrabold text-white text-3xl lg:text-4xl mb-4">
@@ -560,53 +550,69 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="bg-dark text-gray-300 pt-16 pb-8 border-t border-white/10">
+  <footer class="bg-primary text-white pt-14 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- Contacts -->
         <div>
-          <a href="index.html" class="flex items-center gap-2 mb-4">
-            <div class="w-9 h-9 bg-accent rounded-full flex items-center justify-center">
-              <i class="fas fa-leaf text-white text-sm"></i>
-            </div>
-            <span class="font-heading font-bold text-xl text-white">Eco<span class="text-accent">Trim</span></span>
-          </a>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Профессиональная обрезка и уход за деревьями в Киеве и области с 2015 года.</p>
-          <div class="flex gap-3">
-            <a href="https://t.me/EcoTrimUA" target="_blank" aria-label="Telegram" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-telegram text-sm"></i></a>
-            <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" aria-label="Instagram" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-instagram text-sm"></i></a>
-            <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" aria-label="YouTube" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-youtube text-sm"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=100095185410854" target="_blank" aria-label="Facebook" class="w-9 h-9 bg-white/5 hover:bg-accent rounded-full flex items-center justify-center transition-colors duration-200"><i class="fab fa-facebook-f text-sm"></i></a>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Контакты</h4>
+          <div class="space-y-3">
+            <a href="tel:+380932935353" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <i class="fas fa-phone text-accent flex-shrink-0"></i> 093 293 53 53
+            </a>
+            <a href="mailto:ecotrimua@gmail.com" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <i class="fas fa-envelope text-accent flex-shrink-0"></i> ecotrimua@gmail.com
+            </a>
+            <p class="flex items-center gap-3 text-white/80 text-sm">
+              <i class="fas fa-map-marker-alt text-accent flex-shrink-0"></i> Киев, Украина 🇺🇦
+            </p>
           </div>
         </div>
+        <!-- Services -->
         <div>
-          <h4 class="font-heading font-semibold text-white mb-4">Услуги</h4>
-          <a href="index.html#services" class="footer-link text-sm">Ландшафтная формовка</a>
-          <a href="index.html#services" class="footer-link text-sm">Санитарная обрезка</a>
-          <a href="index.html#services" class="footer-link text-sm">Формирование кроны</a>
-          <a href="index.html#services" class="footer-link text-sm">Удаление деревьев</a>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Услуги</h4>
+          <div class="space-y-2">
+            <a href="index.html#services" class="block text-white/80 hover:text-white transition-colors text-sm">Обрезка Деревьев</a>
+            <a href="index.html#services" class="block text-white/80 hover:text-white transition-colors text-sm">Спасение Деревьев</a>
+            <a href="contact.html" class="block text-white/80 hover:text-white transition-colors text-sm">Консультация</a>
+          </div>
         </div>
+        <!-- Social Media -->
         <div>
-          <h4 class="font-heading font-semibold text-white mb-4">Навигация</h4>
-          <a href="index.html" class="footer-link text-sm">Главная</a>
-          <a href="about.html" class="footer-link text-sm">О компании</a>
-          <a href="portfolio.html" class="footer-link text-sm">Наши работы</a>
-          <a href="contact.html" class="footer-link text-sm">Контакты</a>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Мы в соцсетях</h4>
+          <div class="space-y-3">
+            <a href="https://www.instagram.com/ecotrim.kiev.ua" target="_blank" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                <i class="fab fa-instagram text-white"></i>
+              </div>
+              Instagram
+            </a>
+            <a href="https://www.youtube.com/channel/UCVyDBGDrXS_1OD6UfOgW8Ag" target="_blank" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <div class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fab fa-youtube text-white"></i>
+              </div>
+              YouTube
+            </a>
+            <a href="https://t.me/EcoTrimUA" target="_blank" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors text-sm">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: #229ED9;">
+                <i class="fab fa-telegram text-white"></i>
+              </div>
+              Telegram
+            </a>
+          </div>
         </div>
+        <!-- Quick Links -->
         <div>
-          <h4 class="font-heading font-semibold text-white mb-4">Контакты</h4>
-          <a href="tel:+380932935353" class="footer-link text-sm flex items-center gap-2"><i class="fas fa-phone text-accent text-xs"></i> 093 293 53 53</a>
-          <a href="mailto:ecotrimua@gmail.com" class="footer-link text-sm flex items-center gap-2"><i class="fas fa-envelope text-accent text-xs"></i> ecotrimua@gmail.com</a>
-          <p class="text-sm text-gray-400 flex items-center gap-2 mt-1"><i class="fas fa-map-marker-alt text-accent text-xs"></i> Київ, Україна</p>
-          <div class="mt-4 bg-white/5 rounded-xl p-4 text-sm">
-            <p class="text-white font-medium mb-1">Режим роботи</p>
-            <p class="text-gray-400">Пн–Сб: 08:00 – 20:00</p>
-            <p class="text-gray-400">Нд: 09:00 – 17:00</p>
+          <h4 class="font-heading font-bold text-white text-lg mb-5">Быстрые ссылки</h4>
+          <div class="space-y-2">
+            <a href="about.html" class="block text-white/80 hover:text-white transition-colors text-sm">О Нас</a>
+            <a href="contact.html" class="block text-white/80 hover:text-white transition-colors text-sm">Контакты</a>
+            <a href="portfolio.html" class="block text-white/80 hover:text-white transition-colors text-sm">Наши Работы</a>
           </div>
         </div>
       </div>
-      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-sm">&copy; 2025 EcoTrim. Всі права захищені.</p>
-        <p class="text-gray-600 text-xs">Обрізка дерев у Києві та Київській області</p>
+      <div class="border-t border-white/20 pt-8 text-center">
+        <p class="text-white/60 text-sm">&copy; 2025 EcoTrim. Все права защищены.</p>
       </div>
     </div>
   </footer>
