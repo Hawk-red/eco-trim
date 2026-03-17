@@ -93,6 +93,9 @@
   80%    {transform:translateY(-8px)}
 }
 footer a:hover{animation:iconVibrate .35s ease}
+footer a[href^="tel"]{animation:none!important}
+footer a[href^="tel"] i{display:inline-block}
+footer a[href^="tel"]:hover i{animation:iconVibrate .35s ease}
 @keyframes iconVibrate{
   0%,100%{transform:translateX(0)}
   15%    {transform:translateX(-3px)}
