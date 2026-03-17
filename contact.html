@@ -425,6 +425,56 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             </div>
           </div>
 
+          <!-- QR codes grid -->
+          <div class="bg-white rounded-2xl p-6 shadow-md">
+            <h3 class="font-heading font-bold text-dark text-lg mb-4">Сканируй и подписывайся</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+
+              <!-- Instagram QR -->
+              <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:12px;text-align:center;transition:transform .2s ease;cursor:pointer;" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'">
+                <div class="flex items-center justify-center gap-1 mb-2">
+                  <i class="fab fa-instagram text-pink-500"></i>
+                  <span class="text-xs font-semibold text-gray-600">Instagram</span>
+                </div>
+                <img src="https://res.cloudinary.com/dgesovnb4/image/upload/c_scale,q_90,w_1200/v1743460716/Eco%20-%20Trim/1_instagram_zbtbbn.png"
+                     alt="QR Instagram" style="width:100%;aspect-ratio:1/1;object-fit:contain;">
+              </div>
+
+              <!-- YouTube QR -->
+              <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:12px;text-align:center;transition:transform .2s ease;cursor:pointer;" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'">
+                <div class="flex items-center justify-center gap-1 mb-2">
+                  <i class="fab fa-youtube text-red-500"></i>
+                  <span class="text-xs font-semibold text-gray-600">YouTube</span>
+                </div>
+                <img src="https://res.cloudinary.com/dgesovnb4/image/upload/c_scale,q_90,w_1200/v1743460716/Eco%20-%20Trim/3_YouTube_lsubwm.png"
+                     alt="QR YouTube" style="width:100%;aspect-ratio:1/1;object-fit:contain;">
+              </div>
+
+              <!-- Telegram QR -->
+              <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:12px;text-align:center;transition:transform .2s ease;cursor:pointer;" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'">
+                <div class="flex items-center justify-center gap-1 mb-2">
+                  <i class="fab fa-telegram text-[#229ED9]"></i>
+                  <span class="text-xs font-semibold text-gray-600">Telegram</span>
+                </div>
+                <img src="https://res.cloudinary.com/dgesovnb4/image/upload/c_scale,q_90,w_1200/v1743460716/Eco%20-%20Trim/2_telega_gaj1sg.png"
+                     alt="QR Telegram" style="width:100%;aspect-ratio:1/1;object-fit:contain;">
+              </div>
+
+              <!-- Facebook QR — TODO: добавить QR-код Facebook -->
+              <div style="background:#f0f4ff;border:1px solid #d0d9ff;border-radius:12px;padding:12px;text-align:center;transition:transform .2s ease;cursor:pointer;" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'">
+                <div class="flex items-center justify-center gap-1 mb-2">
+                  <i class="fab fa-facebook-f text-[#1877F2]"></i>
+                  <span class="text-xs font-semibold text-gray-600">Facebook</span>
+                </div>
+                <div style="aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#e8eeff;border-radius:8px;">
+                  <span class="text-xs text-gray-400 text-center px-2">QR Facebook<br><span class="text-[10px]">скоро</span></span>
+                </div>
+              </div>
+
+            </div>
+            <p class="text-gray-400 text-xs text-center mt-3">Отсканируйте QR-код чтобы перейти в наши соцсети</p>
+          </div>
+
         </div>
       </div>
     </div>
