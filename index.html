@@ -690,174 +690,126 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
   </section>
 
   <!-- ===== TESTIMONIALS ===== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <style>
+    .swiper-testi { padding-bottom: 48px !important; }
+    .swiper-testi .swiper-pagination-bullet { background: #4caf50; opacity: .4; width: 8px; height: 8px; }
+    .swiper-testi .swiper-pagination-bullet-active { opacity: 1; }
+    .swiper-testi .swiper-button-prev,
+    .swiper-testi .swiper-button-next {
+      width: 40px; height: 40px; background: #fff; border: 1px solid #e5e7eb;
+      border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      top: calc(50% - 24px);
+    }
+    .swiper-testi .swiper-button-prev::after,
+    .swiper-testi .swiper-button-next::after { font-size: 13px; color: #1a5c38; font-weight: 800; }
+    .swiper-testi .swiper-button-prev:hover,
+    .swiper-testi .swiper-button-next:hover { background: #4caf50; border-color: #4caf50; }
+    .swiper-testi .swiper-button-prev:hover::after,
+    .swiper-testi .swiper-button-next:hover::after { color: #fff; }
+    .tc { background: #1a5c38; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; }
+    .tc-stars { color: #fbbf24; font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+    .tc-text { color: rgba(255,255,255,.88); font-size: .875rem; line-height: 1.75; flex: 1; margin-bottom: 20px; }
+    .tc-avatar { width: 42px; height: 42px; background: #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tc-name { font-weight: 700; font-size: .875rem; color: #fff; }
+    .tc-loc { font-size: .72rem; color: rgba(255,255,255,.55); margin-top: 1px; }
+  </style>
+
   <section class="py-6 lg:py-8 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-top:.75rem;">
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <h2 class="font-heading font-extrabold text-dark text-3xl lg:text-4xl">
-          Отзывы наших клиентов
-        </h2>
+        <h2 class="font-heading font-extrabold text-dark text-3xl lg:text-4xl">Отзывы наших клиентов</h2>
       </div>
 
-      <!-- Carousel wrapper -->
-      <div class="relative">
-        <!-- Prev button -->
-        <button id="tPrev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-all duration-200" aria-label="Назад">
-          <i class="fas fa-chevron-left text-sm"></i>
-        </button>
-        <!-- Track -->
-        <style>
-          .t-card{background:#fff;border:1px solid #e5e7eb;border-left:4px solid #4caf50;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.06);display:flex;flex-direction:column;justify-content:space-between;}
-          .t-stars{color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:12px;}
-          .t-text{color:#4b5563;font-size:.875rem;line-height:1.7;margin-bottom:20px;flex:1;}
-          .t-avatar{width:40px;height:40px;background:#1a5c38;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-          .t-name{font-weight:700;font-size:.875rem;color:#1a1a1a;}
-          .t-loc{font-size:.75rem;color:#9ca3af;}
-        </style>
-        <div class="overflow-hidden">
-          <div id="tTrack" class="flex gap-6 transition-transform duration-500 ease-in-out">
+      <div class="swiper swiper-testi">
+        <div class="swiper-wrapper">
 
-            <!-- 1 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Отличная работа! Обрезали большой каштан у нас во дворе. Всё аккуратно, быстро, убрали за собой. Дерево выглядит просто прекрасно. Рекомендую!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">А</span></div><div><p class="t-name">Анна Коваленко</p><p class="t-loc">Київ, Оболонь</p></div></div>
-            </div>
-            <!-- 2 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Звернувся через Instagram. Хлопці приїхали наступного дня, зробили все якісно. Берізка тепер виглядає як мала виглядати. Дякую команді!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">М</span></div><div><p class="t-name">Микола Петренко</p><p class="t-loc">Київська область</p></div></div>
-            </div>
-            <!-- 3 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Профессиональная компания. Спасли старую яблоню, которую хотели срубить. Теперь цветёт каждый год. Это просто чудо! Всем советую EcoTrim.»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">О</span></div><div><p class="t-name">Ольга Сидоренко</p><p class="t-loc">Київ, Печерськ</p></div></div>
-            </div>
-            <!-- 4 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Удалили аварийный тополь рядом с домом. Работали быстро и аккуратно, соседи даже не заметили. Вывезли всё до последней ветки. Цена разумная.»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">В</span></div><div><p class="t-name">Василь Мороз</p><p class="t-loc">Київ, Дарниця</p></div></div>
-            </div>
-            <!-- 5 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Формували крону декількох лип на нашій ділянці. Результат перевершив очікування — дерева стали красивими і здоровими. Дякую EcoTrim!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">І</span></div><div><p class="t-name">Ірина Бондаренко</p><p class="t-loc">Київ, Святошин</p></div></div>
-            </div>
-            <!-- 6 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Обработали все деревья от паразитов. Специалист объяснил всё понятно, показал результат. Заказываем уже второй год подряд!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Д</span></div><div><p class="t-name">Дмитро Лисенко</p><p class="t-loc">Київ, Голосіїв</p></div></div>
-            </div>
-            <!-- 7 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Омолодили старый грецкий орех на даче. Думали уже не спасти, а теперь дерево живёт и плодоносит! Ребята — профессионалы своего дела.»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">С</span></div><div><p class="t-name">Сергій Кравченко</p><p class="t-loc">Київ, Позняки</p></div></div>
-            </div>
-            <!-- 8 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Прибрали кілька старих дерев у дворі багатоповерхівки. Попередили сусідів, все зробили дуже обережно. Жодного пошкодження. Молодці!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Н</span></div><div><p class="t-name">Наталія Шевченко</p><p class="t-loc">Київ, Троєщина</p></div></div>
-            </div>
-            <!-- 9 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Сделали декоративную обрезку туй и кипарисов на участке. Теперь сад выглядит как на картинке. Спасибо за терпение и аккуратность!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Т</span></div><div><p class="t-name">Тетяна Романенко</p><p class="t-loc">Київ, Борщагівка</p></div></div>
-            </div>
-            <!-- 10 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Вырезали омелу с нескольких деревьев. Работа сложная, на высоте, но справились отлично. Объяснили, как предотвратить повторное заражение.»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Р</span></div><div><p class="t-name">Роман Гриценко</p><p class="t-loc">Київ, Деміївка</p></div></div>
-            </div>
-            <!-- 11 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Підрізали гілки, які нависали над дахом. Приїхали вчасно, відпрацювали чітко. Інструмент тихий — не турбував сусідів. Дуже задоволені!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">Л</span></div><div><p class="t-name">Людмила Павленко</p><p class="t-loc">Київ, Виноградар</p></div></div>
-            </div>
-            <!-- 12 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Замовляли санітарну обрізку саду. Хлопці огляділи кожне дерево, порадили що залишити, а що прибрати. Результат — сад як новий!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">О</span></div><div><p class="t-name">Олег Ткаченко</p><p class="t-loc">Київська область, Бровари</p></div></div>
-            </div>
-            <!-- 13 -->
-            <div class="t-card flex-shrink-0" style="width:calc((100% - 48px)/3)">
-              <div><div class="t-stars">★★★★★</div><p class="t-text">«Удалили сухостойную акацию вплотную к забору — задача была непростой. Справились без единого повреждения. Цена, качество, сроки — всё на 5!»</p></div>
-              <div class="flex items-center gap-3"><div class="t-avatar"><span class="text-white font-bold text-sm">К</span></div><div><p class="t-name">Катерина Власенко</p><p class="t-loc">Київ, Солом'янка</p></div></div>
-            </div>
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Отличная работа! Обрезали большой каштан во дворе. Всё аккуратно, быстро, убрали за собой. Дерево выглядит просто прекрасно. Рекомендую!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">А</span></div><div><p class="tc-name">Анна Коваленко</p><p class="tc-loc">Киев, Оболонь</p></div></div>
+          </div></div>
 
-          </div>
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Обратился через Instagram. Ребята приехали на следующий день, сделали всё качественно. Берёза теперь выглядит именно так, как должна. Спасибо команде!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">Н</span></div><div><p class="tc-name">Николай Петренко</p><p class="tc-loc">Киевская область</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Профессиональная компания. Спасли старую яблоню, которую хотели срубить. Теперь цветёт каждый год. Это просто чудо! Всем советую EcoTrim.»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">О</span></div><div><p class="tc-name">Ольга Сидоренко</p><p class="tc-loc">Киев, Печерск</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Удалили аварийный тополь рядом с домом. Работали быстро и аккуратно, соседи даже не заметили. Вывезли всё до последней ветки. Цена разумная.»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">В</span></div><div><p class="tc-name">Василий Мороз</p><p class="tc-loc">Киев, Дарница</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Формировали крону нескольких лип на нашем участке. Результат превзошёл ожидания — деревья стали красивыми и здоровыми. Спасибо EcoTrim!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">И</span></div><div><p class="tc-name">Ирина Бондаренко</p><p class="tc-loc">Киев, Святошин</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Обработали все деревья от паразитов. Специалист объяснил всё доступно, показал результат. Заказываем уже второй год подряд — очень довольны!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">Д</span></div><div><p class="tc-name">Дмитрий Лысенко</p><p class="tc-loc">Киев, Голосеево</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Омолодили старый грецкий орех на даче. Думали уже не спасти, а теперь дерево живёт и плодоносит! Ребята — профессионалы своего дела.»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">С</span></div><div><p class="tc-name">Сергей Кравченко</p><p class="tc-loc">Киев, Позняки</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Убрали несколько старых деревьев во дворе многоэтажки. Предупредили соседей, сделали всё очень аккуратно. Ни одного повреждения. Молодцы!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">Н</span></div><div><p class="tc-name">Наталья Шевченко</p><p class="tc-loc">Киев, Троещина</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Сделали декоративную обрезку туй и кипарисов на участке. Теперь сад выглядит как на картинке. Спасибо за терпение и аккуратность!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">Т</span></div><div><p class="tc-name">Татьяна Романенко</p><p class="tc-loc">Киев, Борщаговка</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Вырезали омелу с нескольких деревьев. Работа сложная, на высоте, но справились отлично. Объяснили, как предотвратить повторное заражение.»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">Р</span></div><div><p class="tc-name">Роман Гриценко</p><p class="tc-loc">Киев, Демеевка</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Подрезали ветки, нависавшие над крышей. Приехали вовремя, отработали чётко. Инструмент тихий — не беспокоил соседей. Очень довольны результатом!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">Л</span></div><div><p class="tc-name">Людмила Павленко</p><p class="tc-loc">Киев, Виноградарь</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Заказывали санитарную обрезку сада. Ребята осмотрели каждое дерево, посоветовали что оставить, а что убрать. Результат — сад как новый!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">О</span></div><div><p class="tc-name">Олег Ткаченко</p><p class="tc-loc">Киевская обл., Бровары</p></div></div>
+          </div></div>
+
+          <div class="swiper-slide"><div class="tc">
+            <div><div class="tc-stars">★★★★★</div><p class="tc-text">«Удалили сухостойную акацию вплотную к забору — задача была непростой. Справились без единого повреждения. Цена, качество, сроки — всё на пять!»</p></div>
+            <div style="display:flex;align-items:center;gap:12px"><div class="tc-avatar"><span style="color:#fff;font-weight:700;font-size:.875rem">К</span></div><div><p class="tc-name">Екатерина Власенко</p><p class="tc-loc">Киев, Соломенка</p></div></div>
+          </div></div>
+
         </div>
-        <!-- Next button -->
-        <button id="tNext" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-all duration-200" aria-label="Вперёд">
-          <i class="fas fa-chevron-right text-sm"></i>
-        </button>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
-
-      <!-- Dots -->
-      <div id="tDots" class="flex justify-center gap-2 mt-6"></div>
     </div>
   </section>
-
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-  (function(){
-    var track = document.getElementById('tTrack');
-    var cards = track.children;
-    var total = cards.length;
-    var perView = window.innerWidth < 768 ? 1 : 3;
-    var current = 0;
-    var maxIdx = total - perView;
-
-    function cardW(){
-      return perView === 1
-        ? track.parentElement.offsetWidth
-        : (track.parentElement.offsetWidth - (perView-1)*24) / perView;
+  new Swiper('.swiper-testi', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 24,
+    autoplay: { delay: 10000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: '.swiper-testi .swiper-pagination', clickable: true },
+    navigation: { prevEl: '.swiper-testi .swiper-button-prev', nextEl: '.swiper-testi .swiper-button-next' },
+    breakpoints: {
+      768:  { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
     }
-
-    function setWidths(){
-      perView = window.innerWidth < 768 ? 1 : 3;
-      maxIdx = total - perView;
-      var w = cardW();
-      for(var i=0;i<total;i++) cards[i].style.width = w + 'px';
-    }
-
-    function go(idx){
-      if(idx < 0) idx = 0;
-      if(idx > maxIdx) idx = maxIdx;
-      current = idx;
-      var w = cardW();
-      track.style.transform = 'translateX(-' + (current * (w + 24)) + 'px)';
-      updateDots();
-    }
-
-    function buildDots(){
-      var dots = document.getElementById('tDots');
-      dots.innerHTML = '';
-      var pages = maxIdx + 1;
-      for(var i=0;i<pages;i++){
-        var d = document.createElement('button');
-        d.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;background:#d1d5db;cursor:pointer;transition:background .2s';
-        d.setAttribute('data-i', i);
-        d.addEventListener('click', function(){ go(+this.getAttribute('data-i')); });
-        dots.appendChild(d);
-      }
-      updateDots();
-    }
-
-    function updateDots(){
-      var ds = document.getElementById('tDots').children;
-      for(var i=0;i<ds.length;i++) ds[i].style.background = i===current ? '#4caf50' : '#d1d5db';
-    }
-
-    document.getElementById('tPrev').addEventListener('click', function(){ go(current-1); });
-    document.getElementById('tNext').addEventListener('click', function(){ go(current+1); });
-
-    window.addEventListener('resize', function(){
-      setWidths();
-      buildDots();
-      go(0);
-    });
-
-    setWidths();
-    buildDots();
-    go(0);
-  })();
+  });
   </script>
 
   <!-- ===== CTA BANNER ===== -->
