@@ -738,10 +738,10 @@ footer a:hover{color:#a5d6a7!important}
   if(!g) return;
   var icons = g.querySelectorAll('i');
   g.addEventListener('mouseenter', function(){
-    icons.forEach(function(el){
+    icons.forEach(function(el, i){
       el.classList.remove('vibrating');
       void el.offsetWidth;
-      el.classList.add('vibrating');
+      setTimeout(function(){ el.classList.add('vibrating'); }, i * 120);
     });
   });
   icons.forEach(function(el){
