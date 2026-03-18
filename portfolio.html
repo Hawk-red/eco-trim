@@ -114,8 +114,9 @@
     .swiper-thumbs-wrap .swiper-slide-thumb-active { opacity: 1; outline: 2px solid #4caf50; }
 
     /* Filter buttons */
-    .filter-btn { transition: all 0.3s ease; }
-    .filter-btn.active { background: #1a5c38; color: white; }
+    .filter-btn { transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(26,92,56,.08); }
+    .filter-btn:hover { box-shadow: 0 4px 16px rgba(26,92,56,.2); transform: translateY(-1px); }
+    .filter-btn.active { background: #1a5c38; color: white; box-shadow: 0 4px 16px rgba(26,92,56,.35); transform: translateY(-1px); }
 
     /* Back to top */
     .back-to-top { transition: all 0.3s; }
@@ -291,15 +292,40 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-top:.75rem;">
 
       <!-- Filter Tabs -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up">
-        <template x-for="cat in categories" :key="cat.key">
-          <button
-            @click="setFilter(cat.key)"
-            class="filter-btn px-5 py-2.5 rounded-full border-2 border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-all duration-300"
-            :class="activeFilter === cat.key ? 'active' : ''"
-            x-text="cat.label"
-          ></button>
-        </template>
+      <div class="mb-12" data-aos="fade-up">
+        <!-- Строка 1: Все фото -->
+        <div class="flex justify-center mb-3">
+          <template x-for="cat in categories.slice(0,1)" :key="cat.key">
+            <button
+              @click="setFilter(cat.key)"
+              class="filter-btn px-8 py-2.5 rounded-full border-2 border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-all duration-300"
+              :class="activeFilter === cat.key ? 'active' : ''"
+              x-text="cat.label"
+            ></button>
+          </template>
+        </div>
+        <!-- Строка 2: первые 3 услуги -->
+        <div class="flex flex-wrap justify-center gap-3 mb-3">
+          <template x-for="cat in categories.slice(1,4)" :key="cat.key">
+            <button
+              @click="setFilter(cat.key)"
+              class="filter-btn px-5 py-2.5 rounded-full border-2 border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-all duration-300"
+              :class="activeFilter === cat.key ? 'active' : ''"
+              x-text="cat.label"
+            ></button>
+          </template>
+        </div>
+        <!-- Строка 3: последние 3 услуги -->
+        <div class="flex flex-wrap justify-center gap-3">
+          <template x-for="cat in categories.slice(4)" :key="cat.key">
+            <button
+              @click="setFilter(cat.key)"
+              class="filter-btn px-5 py-2.5 rounded-full border-2 border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-all duration-300"
+              :class="activeFilter === cat.key ? 'active' : ''"
+              x-text="cat.label"
+            ></button>
+          </template>
+        </div>
       </div>
 
       <!-- Stats row -->
