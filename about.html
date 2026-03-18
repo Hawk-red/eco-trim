@@ -272,8 +272,8 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
               <p class="text-gray-500 text-xs mt-0.5">Проектов</p>
             </div>
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
-              <p class="font-heading font-extrabold text-primary text-2xl" x-data x-text="new Date().getFullYear() - 2015"></p>
-              <p class="text-gray-500 text-xs mt-0.5">Лет опыта</p>
+              <p class="font-heading font-extrabold text-primary text-2xl saved-dynamic">130+</p>
+              <p class="text-gray-500 text-xs mt-0.5">Спасённых деревьев</p>
             </div>
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
               <p class="font-heading font-extrabold text-primary text-2xl">100%</p>
@@ -760,7 +760,10 @@ footer a:hover{color:#a5d6a7!important}
   const _s=new Date('2015-01-01'),_n=new Date();
   const _mo=(_n.getFullYear()-_s.getFullYear())*12+(_n.getMonth()-_s.getMonth());
   const _ord=Math.floor(_mo*6.25);
+  const _trees=Math.round(_ord*(1628/437));
+  const _saved=Math.floor(_trees*0.08);
   document.querySelectorAll('.orders-dynamic').forEach(el=>el.textContent=_ord+'+');
+  document.querySelectorAll('.saved-dynamic').forEach(el=>el.textContent=_saved+'+');
 })();
 </script>
 </body>
