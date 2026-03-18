@@ -507,7 +507,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
           </div>
           <div class="p-6">
-            <h3 class="font-heading font-bold text-dark text-xl mb-3">Ландшафтная формовка</h3>
+            <h3 class="font-heading font-bold text-dark text-xl mb-3" data-service-key="landscaping">Ландшафтная формовка</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Качественная обрезка деревьев любых видов и размеров. Точно обрезаем
               и формируем деревья для оптимального здоровья и эстетического вида.
@@ -530,7 +530,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
           </div>
           <div class="p-6">
-            <h3 class="font-heading font-bold text-dark text-xl mb-3">Санитарная обрезка</h3>
+            <h3 class="font-heading font-bold text-dark text-xl mb-3" data-service-key="sanitary">Санитарная обрезка</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Услуги санитарной обрезки для предотвращения распространения болезней
               и вредителей. Удаление поврежденных, зараженных и неправильно растущих ветвей.
@@ -553,7 +553,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
           </div>
           <div class="p-6">
-            <h3 class="font-heading font-bold text-dark text-xl mb-3">Формирование кроны</h3>
+            <h3 class="font-heading font-bold text-dark text-xl mb-3" data-service-key="crown">Формирование кроны</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Услуги по формированию кроны для достижения желаемой формы и архитектурного
               вида. Создадим гармоничную и привлекательную внешность деревьев.
@@ -576,7 +576,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
           </div>
           <div class="p-6">
-            <h3 class="font-heading font-bold text-dark text-xl mb-3">Удаление больных веток</h3>
+            <h3 class="font-heading font-bold text-dark text-xl mb-3" data-service-key="removal">Удаление больных веток</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Удаление мёртвых и больных веток, которые могут представлять опасность.
               Улучшение здоровья и внешнего вида деревьев.
@@ -599,7 +599,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
           </div>
           <div class="p-6">
-            <h3 class="font-heading font-bold text-dark text-xl mb-3">Спасение деревьев</h3>
+            <h3 class="font-heading font-bold text-dark text-xl mb-3" data-service-key="rescue">Спасение деревьев</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Комплексное лечение и реабилитация больных деревьев. Обработка от
               вредителей, заделка дупел, укрепление конструкции дерева.
@@ -622,7 +622,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
           </div>
           <div class="p-6">
-            <h3 class="font-heading font-bold text-dark text-xl mb-3">Удаление дерева</h3>
+            <h3 class="font-heading font-bold text-dark text-xl mb-3" data-service-key="tree-removal">Удаление дерева</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Безопасное удаление аварийных, сухостойных и нежелательных деревьев.
               Работаем на высоте, вывоз древесины по договорённости.
@@ -792,6 +792,14 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
       </div><!-- /reviews-wrapper -->
     </div>
   </section>
+  <script src="js/services.js"></script>
+  <script>
+  // Синхронизация названий услуг из единого конфига
+  document.querySelectorAll('[data-service-key]').forEach(function(el){
+    var s=ECOTRIM_SERVICES.find(function(s){return s.key===el.dataset.serviceKey;});
+    if(s) el.textContent=s.label;
+  });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
   new Swiper('.swiper-testi', {

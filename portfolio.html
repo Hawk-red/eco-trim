@@ -36,6 +36,8 @@
     }
   </script>
 
+  <!-- Services config (shared with index.html) -->
+  <script src="js/services.js"></script>
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -542,15 +544,16 @@ footer a:hover{color:#a5d6a7!important}
         lightboxOpen: false,
         currentIndex: 0,
 
-        categories: [
-          { key: 'all',          label: 'Все фото' },
-          { key: 'landscaping',  label: 'Ландшафтная формовка' },
-          { key: 'sanitary',     label: 'Санитарная обрезка' },
-          { key: 'crown',        label: 'Формирование кроны' },
-          { key: 'removal',      label: 'Удаление больных веток' },
-          { key: 'rescue',       label: 'Спасение деревьев' },
-          { key: 'tree-removal', label: 'Удаление дерева' },
-        ],
+        categories: [{ key: 'all', label: 'Все фото' }].concat(
+          typeof ECOTRIM_SERVICES !== 'undefined' ? ECOTRIM_SERVICES : [
+            { key: 'landscaping',  label: 'Ландшафтная формовка' },
+            { key: 'sanitary',     label: 'Санитарная обрезка' },
+            { key: 'crown',        label: 'Формирование кроны' },
+            { key: 'removal',      label: 'Удаление больных веток' },
+            { key: 'rescue',       label: 'Спасение деревьев' },
+            { key: 'tree-removal', label: 'Удаление дерева' },
+          ]
+        ),
 
         items: [
           {
