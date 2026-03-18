@@ -276,8 +276,8 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
               <p class="text-gray-500 text-xs mt-0.5">Спасённых деревьев</p>
             </div>
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
-              <p class="font-heading font-extrabold text-primary text-2xl">100%</p>
-              <p class="text-gray-500 text-xs mt-0.5">Довольных</p>
+              <p class="font-heading font-extrabold text-primary text-2xl parasites-dynamic">183+</p>
+              <p class="text-gray-500 text-xs mt-0.5">Срезанных паразитов</p>
             </div>
           </div>
 
@@ -762,8 +762,10 @@ footer a:hover{color:#a5d6a7!important}
   const _ord=Math.floor(_mo*6.25);
   const _trees=Math.round(_ord*(1628/437));
   const _saved=Math.floor(_trees*0.08);
+  const _parasites=Math.round(_ord*(183/437));
   document.querySelectorAll('.orders-dynamic').forEach(el=>el.textContent=_ord+'+');
   document.querySelectorAll('.saved-dynamic').forEach(el=>el.textContent=_saved+'+');
+  document.querySelectorAll('.parasites-dynamic').forEach(el=>el.textContent=_parasites+'+');
 })();
 </script>
 </body>
