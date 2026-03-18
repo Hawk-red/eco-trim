@@ -289,7 +289,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             и экологично
           </h1>
           <p class="text-white/75 text-lg lg:text-xl leading-relaxed mb-10 max-w-2xl">
-            Сертифицированные арбористы с 10-летним опытом. Формирование крон,
+            Сертифицированные арбористы с <span class="years-dynamic">10</span>-летним опытом. Формирование крон,
             санитарная обрезка, спасение и удаление деревьев любой сложности.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
@@ -309,7 +309,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
             </div>
             <div class="w-px bg-white/20"></div>
             <div>
-              <div class="font-heading font-extrabold text-accent text-3xl">10</div>
+              <div class="font-heading font-extrabold text-accent text-3xl years-dynamic">10</div>
               <div class="text-white/60 text-sm">лет на рынке</div>
             </div>
             <div class="w-px bg-white/20"></div>
@@ -1093,6 +1093,7 @@ footer a:hover{color:#a5d6a7!important}
   const _ord = Math.floor(_mo*6.25), _yr = _n.getFullYear()-2015;
   document.querySelectorAll('.years-badge').forEach(el=>el.textContent=_yr+' лет');
   document.querySelectorAll('.years-badge-long').forEach(el=>el.textContent=_yr+' лет опыта');
+  document.querySelectorAll('.years-dynamic').forEach(el=>el.textContent=_yr);
   document.querySelectorAll('.orders-badge').forEach(el=>el.textContent='Более '+_ord+' выполненных проектов. Работаем с деревьями любой сложности.');
 })();
 </script>
