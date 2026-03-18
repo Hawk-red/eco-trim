@@ -304,7 +304,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
           <!-- Quick stats row -->
           <div class="flex flex-wrap gap-8 mt-14">
             <div>
-              <div class="font-heading font-extrabold text-accent text-3xl">218+</div>
+              <div class="font-heading font-extrabold text-accent text-3xl orders-dynamic">218+</div>
               <div class="text-white/60 text-sm">выполненных проектов</div>
             </div>
             <div class="w-px bg-white/20"></div>
@@ -1094,6 +1094,7 @@ footer a:hover{color:#a5d6a7!important}
   document.querySelectorAll('.years-badge').forEach(el=>el.textContent=_yr+' лет');
   document.querySelectorAll('.years-badge-long').forEach(el=>el.textContent=_yr+' лет опыта');
   document.querySelectorAll('.years-dynamic').forEach(el=>el.textContent=_yr);
+  document.querySelectorAll('.orders-dynamic').forEach(el=>el.textContent=_ord+'+');
   document.querySelectorAll('.orders-badge').forEach(el=>el.textContent='Более '+_ord+' выполненных проектов. Работаем с деревьями любой сложности.');
 })();
 </script>
