@@ -695,18 +695,30 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
     .swiper-testi { padding-bottom: 48px !important; }
     .swiper-testi .swiper-pagination-bullet { background: #4caf50; opacity: .4; width: 8px; height: 8px; }
     .swiper-testi .swiper-pagination-bullet-active { opacity: 1; }
-    .swiper-testi .swiper-button-prev,
-    .swiper-testi .swiper-button-next {
+    .reviews-wrapper { position: relative; padding: 0 52px; }
+    .reviews-wrapper .swiper-button-prev,
+    .reviews-wrapper .swiper-button-next {
+      position: absolute; top: calc(50% - 44px); z-index: 10;
       width: 40px; height: 40px; background: #fff; border: 1px solid #e5e7eb;
       border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.1);
-      top: calc(50% - 24px);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
     }
-    .swiper-testi .swiper-button-prev::after,
-    .swiper-testi .swiper-button-next::after { font-size: 13px; color: #1a5c38; font-weight: 800; }
-    .swiper-testi .swiper-button-prev:hover,
-    .swiper-testi .swiper-button-next:hover { background: #4caf50; border-color: #4caf50; }
-    .swiper-testi .swiper-button-prev:hover::after,
-    .swiper-testi .swiper-button-next:hover::after { color: #fff; }
+    .reviews-wrapper .swiper-button-prev { left: 0; }
+    .reviews-wrapper .swiper-button-next { right: 0; }
+    .reviews-wrapper .swiper-button-prev::after,
+    .reviews-wrapper .swiper-button-next::after { font-size: 13px; color: #1a5c38; font-weight: 800; }
+    .reviews-wrapper .swiper-button-prev:hover,
+    .reviews-wrapper .swiper-button-next:hover { background: #4caf50; border-color: #4caf50; }
+    .reviews-wrapper .swiper-button-prev:hover::after,
+    .reviews-wrapper .swiper-button-next:hover::after { color: #fff; }
+    @media(max-width:767px){
+      .reviews-wrapper { padding: 0 36px; }
+      .reviews-wrapper .swiper-button-prev,
+      .reviews-wrapper .swiper-button-next { width: 32px; height: 32px; }
+      .reviews-wrapper .swiper-button-prev::after,
+      .reviews-wrapper .swiper-button-next::after { font-size: 11px; }
+    }
     .tc { background: #1a5c38; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; }
     .tc-stars { color: #fbbf24; font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
     .tc-text { color: rgba(255,255,255,.88); font-size: .875rem; line-height: 1.75; flex: 1; margin-bottom: 20px; }
@@ -721,6 +733,9 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
         <h2 class="font-heading font-extrabold text-dark text-3xl lg:text-4xl">Отзывы наших клиентов</h2>
       </div>
 
+      <div class="reviews-wrapper">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
       <div class="swiper swiper-testi">
         <div class="swiper-wrapper">
 
@@ -791,9 +806,8 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
 
         </div>
         <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
       </div>
+      </div><!-- /reviews-wrapper -->
     </div>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -804,7 +818,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
     spaceBetween: 24,
     autoplay: { delay: 10000, disableOnInteraction: false, pauseOnMouseEnter: true },
     pagination: { el: '.swiper-testi .swiper-pagination', clickable: true },
-    navigation: { prevEl: '.swiper-testi .swiper-button-prev', nextEl: '.swiper-testi .swiper-button-next' },
+    navigation: { prevEl: '.reviews-wrapper .swiper-button-prev', nextEl: '.reviews-wrapper .swiper-button-next' },
     breakpoints: {
       768:  { slidesPerView: 2 },
       1024: { slidesPerView: 3 }
