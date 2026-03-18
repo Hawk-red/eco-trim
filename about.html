@@ -761,8 +761,8 @@ footer a:hover{color:#a5d6a7!important}
   const founded = 2015;
   const now = new Date();
   const monthsPassed = (now.getFullYear() - founded) * 12 + now.getMonth();
-  const orders = Math.floor(monthsPassed * 6.25);
-  const trees = orders * 4;
+  const orders = Math.round(monthsPassed * (437 / 134));
+  const trees = Math.round(orders * (1628 / 437));
   const saved = Math.floor(trees * 0.08);
   const parasites = Math.round(orders * (183 / 437));
   const years = now.getFullYear() - founded;

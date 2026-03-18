@@ -1090,7 +1090,7 @@ footer a:hover{color:#a5d6a7!important}
 (function(){
   const _s = new Date('2015-01-01'), _n = new Date();
   const _mo = (_n.getFullYear()-_s.getFullYear())*12+(_n.getMonth()-_s.getMonth());
-  const _ord = Math.floor(_mo*6.25), _yr = _n.getFullYear()-2015;
+  const _ord = Math.round(_mo*(437/134)), _yr = _n.getFullYear()-2015;
   document.querySelectorAll('.years-badge').forEach(el=>el.textContent=_yr+' лет');
   document.querySelectorAll('.years-badge-long').forEach(el=>el.textContent=_yr+' лет опыта');
   document.querySelectorAll('.years-dynamic').forEach(el=>el.textContent=_yr);
