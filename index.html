@@ -1117,5 +1117,47 @@ footer a:hover{color:#a5d6a7!important}
   icons.forEach(function(el){ el.style.display='inline-block'; });
 })();
 </script>
+<!-- ===== PANDA SCROLL ===== -->
+<style>
+#rope-scene{position:fixed;right:0;top:0;bottom:0;width:65px;pointer-events:none;z-index:100}
+#rope-line{display:none}
+#climber-fig{position:absolute;right:0;left:auto;width:60px;height:60px;top:40px;
+  transition:top .12s cubic-bezier(.25,.46,.45,.94);will-change:top}
+#anim-btn-a{position:fixed;bottom:1.5rem;left:1.5rem;z-index:10000;width:36px;height:36px;border-radius:50%;border:none;
+  background:rgba(26,92,56,.85);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  pointer-events:auto;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:background .2s}
+#anim-btn-a:hover{background:rgba(26,92,56,1)}
+@media(max-width:768px){#rope-scene,#anim-btn-a{display:none}}
+</style>
+<div id="rope-scene">
+  <div id="rope-line"></div>
+  <img id="climber-fig" src="img/temp/лого 2025 .png" alt="EcoTrim" style="width:60px;height:60px;object-fit:contain;transform:scaleX(-1);" />
+</div>
+<button id="anim-btn-a" title="Пауза анимации" aria-label="Пауза анимации">
+  <svg id="ico-pa" width="14" height="14" viewBox="0 0 14 14" fill="white"><rect x="2" y="1" width="4" height="12" rx="1"/><rect x="8" y="1" width="4" height="12" rx="1"/></svg>
+  <svg id="ico-ra" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none"><polygon points="2,1 12,7 2,13"/></svg>
+</button>
+<script>
+(function(){
+  if(window.innerWidth<768)return;
+  var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
+  var footer=document.querySelector('footer');
+  function upd(){
+    if(!paused){
+      var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
+      var maxTop=window.innerHeight-95-40;
+      if(footer){var footerTop=footer.getBoundingClientRect().top;if(footerTop<window.innerHeight){maxTop=Math.min(maxTop,footerTop-70);}}
+      fig.style.top=(40+Math.min(1,s/tot)*Math.max(0,maxTop-40))+'px';
+    }
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
+  document.getElementById('anim-btn-a').addEventListener('click',function(){
+    paused=!paused;
+    document.getElementById('ico-pa').style.display=paused?'none':'';
+    document.getElementById('ico-ra').style.display=paused?'':'none';
+  });
+})();
+</script>
 </body>
 </html>
