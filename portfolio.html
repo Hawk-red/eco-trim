@@ -308,12 +308,12 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
         </div>
         <div class="w-px bg-gray-200"></div>
         <div>
-          <span class="font-heading font-extrabold text-3xl text-primary">218+</span>
+          <span class="font-heading font-extrabold text-3xl text-primary orders-dynamic">218+</span>
           <p class="text-sm text-gray-500 mt-0.5">выполнено</p>
         </div>
         <div class="w-px bg-gray-200"></div>
         <div>
-          <span class="font-heading font-extrabold text-3xl text-primary">10</span>
+          <span class="font-heading font-extrabold text-3xl text-primary years-dynamic">10</span>
           <p class="text-sm text-gray-500 mt-0.5">лет опыта</p>
         </div>
       </div>
@@ -862,6 +862,16 @@ footer a:hover{color:#a5d6a7!important}
   });
   // make icons inline-block so transform works
   icons.forEach(function(el){ el.style.display='inline-block'; });
+})();
+</script>
+<script>
+(function(){
+  const _s=new Date('2015-01-01'),_n=new Date();
+  const _mo=(_n.getFullYear()-_s.getFullYear())*12+(_n.getMonth()-_s.getMonth());
+  const _ord=Math.round(_mo*(437/134));
+  const _yr=_n.getFullYear()-2015;
+  document.querySelectorAll('.orders-dynamic').forEach(el=>el.textContent=_ord+'+');
+  document.querySelectorAll('.years-dynamic').forEach(el=>el.textContent=_yr);
 })();
 </script>
 </body>
