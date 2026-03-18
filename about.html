@@ -369,12 +369,13 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
           </div>
           <div class="bg-primary rounded-2xl p-6 shadow-lg">
             <div class="flex items-center gap-3 mb-2">
-              <span class="bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">2025</span>
-              <h3 class="font-heading font-bold text-white text-lg">218+ проектов и сегодня</h3>
+              <span class="bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">2026</span>
+              <h3 class="font-heading font-bold text-white text-lg"><span class="stat-orders">218+</span> проектов и сегодня</h3>
             </div>
             <p class="text-white/75 text-sm leading-relaxed">
-              Сегодня EcoTrim — ведущая компания по уходу за деревьями в Киеве. Более 218 успешно
-              выполненных проектов, 2742 обработанных деревьев. Продолжаем расти и совершенствоваться.
+              Сегодня EcoTrim — команда из <span class="stat-specialists">14</span> специалистов,
+              более <span class="stat-orders">218+</span> выполненных проектов
+              и <span class="stat-trees">2742</span> обработанных деревьев по всей Киевской области.
             </p>
           </div>
         </div>
@@ -643,7 +644,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
        style="display:block;width:100%;height:130px;object-fit:cover;object-position:top;pointer-events:none;margin-top:0;">
   <!-- Copyright -->
   <div style="text-align:center;padding:0 1rem;">
-    <p style="color:rgba(255,255,255,.6);font-size:.875rem;">&copy; 2025 EcoTrim. Все права защищены.</p>
+    <p style="color:rgba(255,255,255,.6);font-size:.875rem;">&copy; 2026 EcoTrim. Все права защищены.</p>
   </div>
   </footer>
 <style>
@@ -757,15 +758,25 @@ footer a:hover{color:#a5d6a7!important}
 </script>
 <script>
 (function(){
-  const _s=new Date('2015-01-01'),_n=new Date();
-  const _mo=(_n.getFullYear()-_s.getFullYear())*12+(_n.getMonth()-_s.getMonth());
-  const _ord=Math.floor(_mo*6.25);
-  const _trees=Math.round(_ord*(1628/437));
-  const _saved=Math.floor(_trees*0.08);
-  const _parasites=Math.round(_ord*(183/437));
-  document.querySelectorAll('.orders-dynamic').forEach(el=>el.textContent=_ord+'+');
-  document.querySelectorAll('.saved-dynamic').forEach(el=>el.textContent=_saved+'+');
-  document.querySelectorAll('.parasites-dynamic').forEach(el=>el.textContent=_parasites+'+');
+  const founded = 2015;
+  const now = new Date();
+  const monthsPassed = (now.getFullYear() - founded) * 12 + now.getMonth();
+  const orders = Math.floor(monthsPassed * 6.25);
+  const trees = orders * 4;
+  const saved = Math.floor(trees * 0.08);
+  const parasites = Math.round(orders * (183 / 437));
+  const years = now.getFullYear() - founded;
+  const specialists = 12 + Math.floor((now.getFullYear() - 2019) * 1.5);
+
+  document.querySelectorAll('.orders-dynamic').forEach(el=>el.textContent=orders+'+');
+  document.querySelectorAll('.saved-dynamic').forEach(el=>el.textContent=saved+'+');
+  document.querySelectorAll('.parasites-dynamic').forEach(el=>el.textContent=parasites+'+');
+  document.querySelectorAll('.stat-orders').forEach(el=>el.textContent=orders+'+');
+  document.querySelectorAll('.stat-trees').forEach(el=>el.textContent=trees.toLocaleString());
+  document.querySelectorAll('.stat-saved').forEach(el=>el.textContent=saved+'+');
+  document.querySelectorAll('.stat-years').forEach(el=>el.textContent=years);
+  document.querySelectorAll('.stat-specialists').forEach(el=>el.textContent=specialists);
+  document.querySelectorAll('.years-dynamic').forEach(el=>el.textContent=years);
 })();
 </script>
 </body>
