@@ -711,10 +711,18 @@ footer a:hover{color:#a5d6a7!important}
 (function(){
   if(window.innerWidth<768)return;
   var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
+  var footer=document.querySelector('footer');
   function upd(){
     if(!paused){
       var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
-      fig.style.top=(40+Math.min(1,s/tot)*(window.innerHeight-95-40))+'px';
+      var maxTop=window.innerHeight-95-40;
+      if(footer){
+        var footerTop=footer.getBoundingClientRect().top;
+        if(footerTop<window.innerHeight){
+          maxTop=Math.min(maxTop,footerTop-70);
+        }
+      }
+      fig.style.top=(40+Math.min(1,s/tot)*Math.max(0,maxTop-40))+'px';
     }
     ticking=false;
   }
