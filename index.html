@@ -91,9 +91,8 @@
     }
 
     /* Service cards */
-    .service-card { position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(26,92,56,0.15); }
-    .service-card > div:first-child { position: relative; z-index: 3; }
 
     /* Stats */
     .stat-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
@@ -1014,7 +1013,7 @@ footer a:hover{color:#a5d6a7!important}
 
 <!-- ===== FALLING LEAVES ANIMATION ===== -->
 <style>
-#leaves-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:hidden}
+#leaves-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
 .eco-leaf{position:absolute;top:-80px;pointer-events:none;animation:ecoLeafFall linear forwards;will-change:transform,opacity}
 @keyframes ecoLeafFall{
   0%  {opacity:0;transform:translateY(0) rotate(0deg) translateX(0)}
