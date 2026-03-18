@@ -268,7 +268,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
           <!-- Stats mini -->
           <div class="grid grid-cols-3 gap-4 mb-8">
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
-              <p class="font-heading font-extrabold text-primary text-2xl">218+</p>
+              <p class="font-heading font-extrabold text-primary text-2xl orders-dynamic">218+</p>
               <p class="text-gray-500 text-xs mt-0.5">Проектов</p>
             </div>
             <div class="bg-white rounded-xl p-4 text-center shadow-md">
@@ -753,6 +753,14 @@ footer a:hover{color:#a5d6a7!important}
   });
   // make icons inline-block so transform works
   icons.forEach(function(el){ el.style.display='inline-block'; });
+})();
+</script>
+<script>
+(function(){
+  const _s=new Date('2015-01-01'),_n=new Date();
+  const _mo=(_n.getFullYear()-_s.getFullYear())*12+(_n.getMonth()-_s.getMonth());
+  const _ord=Math.floor(_mo*6.25);
+  document.querySelectorAll('.orders-dynamic').forEach(el=>el.textContent=_ord+'+');
 })();
 </script>
 </body>
