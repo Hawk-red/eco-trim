@@ -669,6 +669,43 @@ footer a:hover{color:#a5d6a7!important}
           this.currentIndex = idx;
         },
 
+        async loadCloudinaryImages() {
+          const cloudName = 'dgesovnb4';
+          const sources = [
+            { tag: 'portfolio_%D1%84%D0%BE%D1%80%D0%BC%D0%BE%D0%B2%D0%BA%D0%B0', cat: 'landscaping', category: 'Ландшафтная формовка' },
+            { tag: 'portfolio_%D1%81%D0%BF%D0%B0%D1%81%D0%B5%D0%BD%D0%B8%D0%B5', cat: 'rescue',      category: 'Спасение деревьев' },
+            { tag: 'portfolio_%D0%BE%D0%B1%D1%80%D0%B5%D0%B7%D0%BA%D0%B0',      cat: 'sanitary',    category: 'Санитарная обрезка' },
+            { tag: 'portfolio_%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5', cat: 'removal',    category: 'Удаление больных веток' },
+          ];
+          let nextId = 1000;
+          for (const src of sources) {
+            try {
+              const res = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/${src.tag}.json`);
+              if (!res.ok) continue;
+              const data = await res.json();
+              (data.resources || []).forEach(item => {
+                const pid = item.public_id;
+                const isVideo = item.resource_type === 'video';
+                this.items.push({
+                  id: nextId++,
+                  category: src.category,
+                  cat: src.cat,
+                  title: src.category,
+                  desc: '',
+                  thumb: isVideo
+                    ? `https://res.cloudinary.com/${cloudName}/video/upload/q_60,w_400,h_400,c_fill/${pid}.jpg`
+                    : `https://res.cloudinary.com/${cloudName}/image/upload/q_60,w_400,h_400,c_fill/${pid}`,
+                  full: isVideo
+                    ? `https://res.cloudinary.com/${cloudName}/video/upload/${pid}`
+                    : `https://res.cloudinary.com/${cloudName}/image/upload/q_90,w_1200/${pid}`,
+                });
+              });
+            } catch(e) {
+              console.log('Ошибка загрузки папки:', src.tag);
+            }
+          }
+        },
+
         init() {
           window.addEventListener('scroll', () => {
             this.scrolled = window.scrollY > 80;
@@ -679,6 +716,7 @@ footer a:hover{color:#a5d6a7!important}
             const valid = this.categories.map(c => c.key);
             if (valid.includes(cat)) this.activeFilter = cat;
           }
+          this.loadCloudinaryImages();
         }
       }
     }
