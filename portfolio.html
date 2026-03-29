@@ -53,6 +53,7 @@
 
   <style>
     * { box-sizing: border-box; }
+    html, body { overflow-x: hidden !important; max-width: 100% !important; }
     body { font-family: 'Inter', sans-serif; background: #f8faf8; color: #1a1a1a; }
     h1,h2,h3,h4,h5,h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
 
@@ -441,7 +442,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
     </div>
 
     <!-- Thumbnails -->
-    <div class="swiper-thumbs-wrap w-full max-w-5xl px-4 pb-4 overflow-x-auto">
+    <div class="swiper-thumbs-wrap w-full max-w-5xl px-4 pb-4 overflow-x-hidden">
       <div class="flex gap-2 justify-center">
         <template x-for="(item, idx) in filteredItems" :key="item.id">
           <div
