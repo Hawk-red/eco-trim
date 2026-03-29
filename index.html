@@ -1133,14 +1133,17 @@ footer a:hover{color:#a5d6a7!important}
   if(window.innerWidth<768)return;
   var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
   var footer=document.querySelector('footer');
-  var backBtn=document.getElementById('back-to-top');
+  var navbar=document.querySelector('nav');
+  var minTop=80;
+  var bottomBtnH=82; /* bottom-6(24) + h-12(48) + gap(10) */
   function upd(){
     if(!paused){
       var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
-      var maxTop=window.innerHeight-95-40;
+      if(navbar) minTop=navbar.offsetHeight+5;
+      var maxTop=window.innerHeight-bottomBtnH;
       if(footer){var footerTop=footer.getBoundingClientRect().top;if(footerTop<window.innerHeight){maxTop=Math.min(maxTop,footerTop-70);}}
-      if(backBtn){var btnTop=window.innerHeight-(parseFloat(getComputedStyle(backBtn).bottom)||24)-backBtn.offsetHeight;maxTop=Math.min(maxTop,btnTop-10);}
-      fig.style.top=(40+Math.min(1,s/tot)*Math.max(0,maxTop-40))+'px';
+      var top=minTop+Math.min(1,s/tot)*Math.max(0,maxTop-minTop);
+      fig.style.top=top+'px';
     }
     ticking=false;
   }
