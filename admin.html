@@ -244,10 +244,18 @@ async function loadGallery() {
   for (const src of FOLDERS) {
     const enc = encodeURIComponent('Eco - Trim/' + src.folder);
     for (const type of ['image','video']) {
+      const url = `https://res.cloudinary.com/${CLOUD}/${type}/list/${enc}.json`;
+      console.log('Fetching:', url);
       try {
-        const r = await fetch(`https://res.cloudinary.com/${CLOUD}/${type}/list/${enc}.json`);
-        if (!r.ok) continue;
+        const r = await fetch(url);
+        console.log('Status:', r.status, 'for', src.folder, type);
+        if (!r.ok) {
+          const text = await r.text();
+          console.error('Error response:', text);
+          continue;
+        }
         const d = await r.json();
+        console.log('Resources found:', d.resources?.length ?? 0, 'in', src.folder, type);
         (d.resources||[]).forEach(item => {
           allItems.push({
             pid: item.public_id,
