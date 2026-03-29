@@ -908,6 +908,7 @@ footer a:hover{color:#a5d6a7!important}
 </style>
   <!-- Back to top -->
   <button
+    id="back-to-top"
     x-show="scrolled"
     @click="window.scrollTo({top:0, behavior:'smooth'})"
     x-transition
@@ -1132,11 +1133,13 @@ footer a:hover{color:#a5d6a7!important}
   if(window.innerWidth<768)return;
   var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
   var footer=document.querySelector('footer');
+  var backBtn=document.getElementById('back-to-top');
   function upd(){
     if(!paused){
       var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
       var maxTop=window.innerHeight-95-40;
       if(footer){var footerTop=footer.getBoundingClientRect().top;if(footerTop<window.innerHeight){maxTop=Math.min(maxTop,footerTop-70);}}
+      if(backBtn){var btnTop=window.innerHeight-(parseFloat(getComputedStyle(backBtn).bottom)||24)-backBtn.offsetHeight;maxTop=Math.min(maxTop,btnTop-10);}
       fig.style.top=(40+Math.min(1,s/tot)*Math.max(0,maxTop-40))+'px';
     }
     ticking=false;
