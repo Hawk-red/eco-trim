@@ -242,7 +242,7 @@ async function loadGallery() {
   allItems = [];
 
   for (const src of FOLDERS) {
-    const enc = encodeURIComponent('Eco - Trim/' + src.folder);
+    const enc = encodeURIComponent(src.folder);
     for (const type of ['image','video']) {
       const url = `https://res.cloudinary.com/${CLOUD}/${type}/list/${enc}.json`;
       console.log('Fetching:', url);
@@ -405,7 +405,7 @@ function openUploadWidget() {
   cloudinary.openUploadWidget({
     cloudName: CLOUD,
     uploadPreset: 'ecotrim_portfolio',
-    folder: 'Eco - Trim/' + folderName,
+    folder: folderName,
     sources: ['local','camera','url'],
     multiple: true, maxFiles: 50,
     resourceType: 'auto',
