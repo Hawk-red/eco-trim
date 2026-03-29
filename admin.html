@@ -10,34 +10,56 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { primary: '#1a5c38', accent: '#4caf50' } } }
-    }
-  </script>
-  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+  <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <style>
     * { box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #f0f7f2; }
     h1,h2,h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
     .card { background: white; border-radius: 16px; box-shadow: 0 2px 16px rgba(26,92,56,.08); }
-    .btn-primary { background: #1a5c38; color: white; border-radius: 10px; padding: .75rem 1.5rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: background .2s, transform .15s; border: none; cursor: pointer; }
+    .btn-primary { background: #1a5c38; color: white; border-radius: 10px; padding: .75rem 1.5rem; font-weight: 600; font-family: 'Plus Jakarta Sans',sans-serif; transition: background .2s,transform .15s; border: none; cursor: pointer; }
     .btn-primary:hover { background: #144a2d; transform: translateY(-1px); }
-    .btn-accent { background: #4caf50; color: white; border-radius: 10px; padding: .75rem 1.5rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: background .2s, transform .15s; border: none; cursor: pointer; }
+    .btn-accent { background: #4caf50; color: white; border-radius: 10px; padding: .75rem 1.5rem; font-weight: 600; font-family: 'Plus Jakarta Sans',sans-serif; transition: background .2s,transform .15s; border: none; cursor: pointer; }
     .btn-accent:hover { background: #388e3c; transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: #1a5c38; border: 2px solid #1a5c38; border-radius: 10px; padding: .65rem 1.25rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: all .2s; cursor: pointer; }
+    .btn-outline { background: transparent; color: #1a5c38; border: 2px solid #1a5c38; border-radius: 10px; padding: .65rem 1.25rem; font-weight: 600; font-family: 'Plus Jakarta Sans',sans-serif; transition: all .2s; cursor: pointer; }
     .btn-outline:hover { background: #1a5c38; color: white; }
-    select, input { font-family: 'Inter', sans-serif; }
-    .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; padding: 1rem 1.5rem; border-radius: 12px; font-weight: 600; font-size: .95rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); transition: opacity .3s, transform .3s; }
+    select,input { font-family: 'Inter',sans-serif; }
+    .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; padding: 1rem 1.5rem; border-radius: 12px; font-weight: 600; font-size: .95rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); transition: opacity .3s,transform .3s; }
     .toast.success { background: #1a5c38; color: white; }
     .toast.error { background: #c0392b; color: white; }
     .toast.hidden { opacity: 0; transform: translateY(10px); pointer-events: none; }
     .accordion-body { overflow: hidden; transition: max-height .35s ease; }
+    .filter-tab { padding: .4rem 1rem; border-radius: 20px; border: 2px solid #1a5c38; color: #1a5c38; font-weight: 600; font-size: .8rem; cursor: pointer; transition: all .2s; background: white; }
+    .filter-tab.active { background: #1a5c38; color: white; }
+
+    /* Gallery grid */
+    #media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .media-item { position: relative; border-radius: 12px; overflow: hidden; background: #e8f5e9; aspect-ratio: 1; cursor: grab; user-select: none; }
+    .media-item:active { cursor: grabbing; }
+    .media-item img, .media-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .media-item .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%); opacity: 0; transition: opacity .25s; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; }
+    .media-item:hover .overlay { opacity: 1; }
+    .media-item .drag-handle { position: absolute; top: 6px; left: 6px; background: rgba(255,255,255,.85); border-radius: 6px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; cursor: grab; }
+    .media-item .btn-hide { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.4); border-radius: 6px; color: white; font-size: .7rem; padding: 2px 6px; cursor: pointer; transition: background .2s; }
+    .media-item .btn-hide:hover { background: rgba(255,193,7,.5); }
+    .media-item.is-hidden { opacity: .35; }
+    .media-item.is-hidden .hidden-badge { display: flex; }
+    .hidden-badge { display: none; position: absolute; top: 6px; right: 6px; background: rgba(220,38,38,.85); border-radius: 6px; padding: 2px 6px; color: white; font-size: .65rem; font-weight: 700; align-items: center; gap: 3px; }
+    .video-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,.6); border-radius: 6px; padding: 3px 7px; color: white; font-size: .65rem; font-weight: 700; }
+    .media-item.is-hidden .video-badge { right: 52px; }
+    .sortable-ghost { opacity: .3; }
+    .sortable-drag { box-shadow: 0 8px 30px rgba(0,0,0,.3); transform: scale(1.04); }
+    #gallery-empty { text-align: center; padding: 3rem; color: #9ca3af; }
+    #gallery-loading { text-align: center; padding: 2rem; color: #6b7280; }
+    .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid #d1fae5; border-top-color: #1a5c38; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .save-bar { position: sticky; bottom: 1.5rem; z-index: 40; display: flex; justify-content: center; }
+    .save-btn-wrap { background: white; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,.15); padding: .5rem .75rem; display: flex; align-items: center; gap: .75rem; }
   </style>
 </head>
 <body>
 
-<!-- ===== LOGIN SCREEN ===== -->
+<!-- ===== LOGIN ===== -->
 <div id="login-screen" class="min-h-screen flex items-center justify-center px-4">
   <div class="card w-full max-w-sm p-8 text-center">
     <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-lg mx-auto mb-4">
@@ -45,264 +67,372 @@
     </div>
     <h1 class="text-2xl font-extrabold text-gray-800 mb-1">EcoTrim</h1>
     <p class="text-gray-500 text-sm mb-6">Панель управления</p>
-    <input
-      id="password-input"
-      type="password"
-      placeholder="Введите пароль"
+    <input id="password-input" type="password" placeholder="Введите пароль"
       class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-primary mb-3"
-      onkeydown="if(event.key==='Enter') doLogin()"
-    />
+      onkeydown="if(event.key==='Enter') doLogin()" style="--tw-ring-color:#1a5c38;" />
     <div id="login-error" class="text-red-500 text-sm mb-3 hidden">Неверный пароль</div>
     <button class="btn-primary w-full text-base" onclick="doLogin()">Войти</button>
   </div>
 </div>
 
 <!-- ===== ADMIN PANEL ===== -->
-<div id="admin-panel" class="hidden min-h-screen">
+<div id="admin-panel" class="hidden min-h-screen pb-24">
 
   <!-- Header -->
   <header style="background:#1a5c38;" class="sticky top-0 z-50 shadow-lg">
-    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg overflow-hidden shadow-md flex-shrink-0">
           <img src="https://res.cloudinary.com/dgesovnb4/image/upload/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png" alt="EcoTrim" class="w-full h-full object-cover" />
         </div>
-        <div>
-          <span class="font-extrabold text-white text-lg" style="font-family:'Plus Jakarta Sans',sans-serif;">EcoTrim</span>
-          <span class="text-white/60 text-sm ml-2">Панель управления</span>
-        </div>
+        <span class="font-extrabold text-white text-lg" style="font-family:'Plus Jakarta Sans',sans-serif;">EcoTrim <span class="text-white/60 font-normal text-sm">Панель управления</span></span>
       </div>
       <div class="flex items-center gap-2">
-        <a href="index.html" target="_blank" class="btn-outline text-sm" style="color:white;border-color:rgba(255,255,255,.5);">
-          Открыть сайт →
-        </a>
-        <button onclick="doLogout()" class="btn-outline text-sm" style="color:white;border-color:rgba(255,255,255,.5);">
-          Выйти
-        </button>
+        <a href="portfolio.html" target="_blank" class="btn-outline text-sm" style="color:white;border-color:rgba(255,255,255,.5);">Сайт →</a>
+        <button onclick="doLogout()" class="btn-outline text-sm" style="color:white;border-color:rgba(255,255,255,.5);">Выйти</button>
       </div>
     </div>
   </header>
 
-  <!-- Main content -->
-  <main class="max-w-4xl mx-auto px-4 py-8 space-y-6">
+  <main class="max-w-5xl mx-auto px-4 py-6 space-y-6">
 
-    <!-- Upload card -->
+    <!-- Upload -->
     <div class="card p-6">
-      <h2 class="text-xl font-bold text-gray-800 mb-1" style="font-family:'Plus Jakarta Sans',sans-serif;">
-        Загрузка фото и видео
-      </h2>
-      <p class="text-gray-500 text-sm mb-5">Выберите категорию и загрузите файлы — они сразу появятся на сайте.</p>
-
-      <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-end">
-        <!-- Category select -->
+      <h2 class="text-xl font-bold text-gray-800 mb-1">Загрузить фото / видео</h2>
+      <p class="text-gray-500 text-sm mb-4">Выберите категорию и загрузите файлы — они сразу появятся на сайте.</p>
+      <div class="flex flex-col sm:flex-row gap-3 items-end">
         <div class="flex-1 w-full">
           <label class="block text-sm font-semibold text-gray-600 mb-1">Категория</label>
-          <select id="category-select" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-primary bg-white">
-            <option data-folder="portfolio_формовка" data-cat="Ландшафтная формовка">
-              Ландшафтная формовка
-            </option>
-            <option data-folder="portfolio_спасение" data-cat="Спасение деревьев">
-              Спасение деревьев
-            </option>
-            <option data-folder="portfolio_обрезка" data-cat="Санитарная обрезка">
-              Санитарная обрезка
-            </option>
-            <option data-folder="portfolio_удаление" data-cat="Удаление больных веток">
-              Удаление больных веток
-            </option>
+          <select id="category-select" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none bg-white" style="outline-color:#1a5c38;">
+            <option data-folder="portfolio_формовка" data-cat="Ландшафтная формовка">Ландшафтная формовка</option>
+            <option data-folder="portfolio_спасение" data-cat="Спасение деревьев">Спасение деревьев</option>
+            <option data-folder="portfolio_обрезка" data-cat="Санитарная обрезка">Санитарная обрезка</option>
+            <option data-folder="portfolio_удаление" data-cat="Удаление больных веток">Удаление больных веток</option>
           </select>
         </div>
-
-        <!-- Upload button -->
-        <button id="upload-btn" class="btn-accent text-base w-full sm:w-auto flex items-center gap-2 justify-center" onclick="openUploadWidget()">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 12V4m0 0L8 8m4-4l4 4"/>
-          </svg>
-          Загрузить фото / видео
+        <button class="btn-accent text-base w-full sm:w-auto flex items-center gap-2 justify-center" onclick="openUploadWidget()">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 12V4m0 0L8 8m4-4l4 4"/></svg>
+          Загрузить
         </button>
       </div>
-
-      <!-- Upload result log -->
       <div id="upload-log" class="mt-4 space-y-2 hidden"></div>
     </div>
 
-    <!-- Instructions accordion -->
-    <div class="card overflow-hidden">
-      <button
-        class="w-full flex items-center justify-between px-6 py-4 text-left"
-        onclick="toggleAccordion()"
-        id="accordion-btn"
-      >
-        <span class="font-bold text-gray-700" style="font-family:'Plus Jakarta Sans',sans-serif;">
-          Как добавить фото на сайт?
-        </span>
-        <svg id="accordion-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#1a5c38" stroke-width="2.5" class="transition-transform duration-300">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
-      <div id="accordion-body" class="accordion-body" style="max-height:0;">
-        <div class="px-6 pb-6 border-t border-gray-100 pt-4">
-          <ol class="space-y-3 text-gray-600 text-sm">
-            <li class="flex gap-3">
-              <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background:#1a5c38;">1</span>
-              <span>Выбери категорию из выпадающего списка выше.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background:#1a5c38;">2</span>
-              <span>Нажми <strong>«Загрузить фото / видео»</strong> — откроется окно загрузки.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background:#1a5c38;">3</span>
-              <span>Перетащи файлы или выбери с компьютера / камеры. До 50 файлов за раз.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background:#1a5c38;">4</span>
-              <span>Дождись завершения загрузки — прогресс виден в окне виджета.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background:#4caf50;">✓</span>
-              <span>Фото и видео автоматически появятся на сайте в разделе <strong>«Наши работы»</strong>.</span>
-            </li>
-          </ol>
-          <div class="mt-4 p-3 rounded-xl text-sm text-gray-600" style="background:#f0f7f2;">
-            <strong>Поддерживаемые форматы:</strong> JPG, PNG, WEBP, MP4, MOV.<br/>
-            <strong>Максимальный размер файла:</strong> 100 МБ.
-          </div>
+    <!-- Gallery Management -->
+    <div class="card p-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div>
+          <h2 class="text-xl font-bold text-gray-800">Управление галереей</h2>
+          <p class="text-gray-500 text-xs mt-0.5">Перетаскивайте для изменения порядка. Скрытые фото не показываются на сайте.</p>
         </div>
+        <button onclick="reloadGallery()" class="btn-outline text-sm flex items-center gap-2 self-start sm:self-auto">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Обновить
+        </button>
       </div>
+
+      <!-- Filter tabs -->
+      <div class="flex flex-wrap gap-2 mb-4" id="gallery-tabs">
+        <button class="filter-tab active" data-f="all" onclick="setGalleryFilter('all',this)">Все</button>
+        <button class="filter-tab" data-f="portfolio_формовка" onclick="setGalleryFilter('portfolio_формовка',this)">Формовка</button>
+        <button class="filter-tab" data-f="portfolio_спасение" onclick="setGalleryFilter('portfolio_спасение',this)">Спасение</button>
+        <button class="filter-tab" data-f="portfolio_обрезка" onclick="setGalleryFilter('portfolio_обрезка',this)">Обрезка</button>
+        <button class="filter-tab" data-f="portfolio_удаление" onclick="setGalleryFilter('portfolio_удаление',this)">Удаление</button>
+      </div>
+
+      <!-- Stats -->
+      <div id="gallery-stats" class="text-xs text-gray-400 mb-3 hidden">
+        Всего: <span id="stat-total">0</span> &nbsp;·&nbsp; Видимых: <span id="stat-visible">0</span> &nbsp;·&nbsp; Скрытых: <span id="stat-hidden">0</span>
+      </div>
+
+      <!-- Grid -->
+      <div id="gallery-loading" class="hidden"><div class="spinner"></div><span class="ml-2 text-sm">Загрузка...</span></div>
+      <div id="gallery-empty" class="hidden">
+        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#d1d5db" stroke-width="1.5" class="mx-auto mb-2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <p class="text-sm">Нет медиафайлов в этой категории</p>
+      </div>
+      <div id="media-grid"></div>
     </div>
 
-    <!-- Info cards -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <div class="card p-4 text-center">
-        <div class="text-2xl font-extrabold" style="color:#1a5c38;font-family:'Plus Jakarta Sans',sans-serif;">4</div>
-        <div class="text-xs text-gray-500 mt-1">Категории</div>
-      </div>
-      <div class="card p-4 text-center">
-        <div class="text-2xl font-extrabold" style="color:#1a5c38;font-family:'Plus Jakarta Sans',sans-serif;">50</div>
-        <div class="text-xs text-gray-500 mt-1">Файлов за раз</div>
-      </div>
-      <div class="card p-4 text-center">
-        <div class="text-2xl font-extrabold" style="color:#1a5c38;font-family:'Plus Jakarta Sans',sans-serif;">100</div>
-        <div class="text-xs text-gray-500 mt-1">МБ макс.</div>
-      </div>
-      <div class="card p-4 text-center">
-        <div class="text-2xl font-extrabold" style="color:#4caf50;font-family:'Plus Jakarta Sans',sans-serif;">авто</div>
-        <div class="text-xs text-gray-500 mt-1">Публикация</div>
+    <!-- Instructions -->
+    <div class="card overflow-hidden">
+      <button class="w-full flex items-center justify-between px-6 py-4 text-left" onclick="toggleAccordion()">
+        <span class="font-bold text-gray-700">Как пользоваться?</span>
+        <svg id="accordion-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#1a5c38" stroke-width="2.5" class="transition-transform duration-300"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div id="accordion-body" class="accordion-body" style="max-height:0;">
+        <div class="px-6 pb-6 border-t border-gray-100 pt-4 text-sm text-gray-600 space-y-2">
+          <p><strong>Загрузка:</strong> выберите категорию → нажмите «Загрузить».</p>
+          <p><strong>Порядок:</strong> перетаскивайте карточки мышью — порядок сохраняется автоматически.</p>
+          <p><strong>Скрыть:</strong> наведите на фото → нажмите «Скрыть» — фото пропадёт с сайта, но останется в Cloudinary.</p>
+          <p><strong>Показать снова:</strong> наведите на скрытое фото (тёмное) → нажмите «Показать».</p>
+          <p><strong>Сохранить порядок:</strong> нажмите кнопку «Сохранить порядок» внизу экрана после перестановки.</p>
+        </div>
       </div>
     </div>
 
   </main>
+
+  <!-- Sticky save bar -->
+  <div class="save-bar px-4" id="save-bar" style="display:none;">
+    <div class="save-btn-wrap">
+      <span class="text-sm text-gray-600 font-medium">Порядок изменён</span>
+      <button class="btn-primary text-sm py-2 px-5" onclick="saveOrder()">💾 Сохранить порядок</button>
+      <button class="text-gray-400 hover:text-gray-600 text-sm" onclick="cancelOrder()">Отмена</button>
+    </div>
+  </div>
+
 </div>
 
 <!-- Toast -->
 <div id="toast" class="toast hidden"></div>
 
 <script>
-  const ADMIN_PASSWORD = 'EcoTrim2025';
+const CLOUD = 'dgesovnb4';
+const FOLDERS = [
+  { folder: 'portfolio_формовка', cat: 'landscaping', label: 'Ландшафтная формовка' },
+  { folder: 'portfolio_спасение', cat: 'rescue',      label: 'Спасение деревьев' },
+  { folder: 'portfolio_обрезка',  cat: 'sanitary',    label: 'Санитарная обрезка' },
+  { folder: 'portfolio_удаление', cat: 'removal',     label: 'Удаление больных веток' },
+];
 
-  function doLogin() {
-    const val = document.getElementById('password-input').value;
-    if (val === ADMIN_PASSWORD) {
-      sessionStorage.setItem('ecotrim_admin', '1');
-      showPanel();
-    } else {
-      document.getElementById('login-error').classList.remove('hidden');
-      document.getElementById('password-input').focus();
+const ADMIN_PASSWORD = 'EcoTrim2025';
+let allItems = [];        // { pid, folder, isVideo, thumb }
+let currentFilter = 'all';
+let orderChanged = false;
+let sortable = null;
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+function doLogin() {
+  if (document.getElementById('password-input').value === ADMIN_PASSWORD) {
+    sessionStorage.setItem('ecotrim_admin', '1');
+    showPanel();
+  } else {
+    document.getElementById('login-error').classList.remove('hidden');
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem('ecotrim_admin');
+  document.getElementById('admin-panel').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+  document.getElementById('password-input').value = '';
+  document.getElementById('login-error').classList.add('hidden');
+}
+function showPanel() {
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('admin-panel').classList.remove('hidden');
+  loadGallery();
+}
+if (sessionStorage.getItem('ecotrim_admin') === '1') showPanel();
+
+// ── Storage ───────────────────────────────────────────────────────────────────
+function getHidden() { try { return new Set(JSON.parse(localStorage.getItem('ecotrim_hidden')||'[]')); } catch(e){ return new Set(); } }
+function setHidden(s) { localStorage.setItem('ecotrim_hidden', JSON.stringify([...s])); }
+function getOrder() { try { return JSON.parse(localStorage.getItem('ecotrim_order')||'{}'); } catch(e){ return {}; } }
+function setOrder(o) { localStorage.setItem('ecotrim_order', JSON.stringify(o)); }
+
+// ── Load gallery ──────────────────────────────────────────────────────────────
+async function loadGallery() {
+  const grid = document.getElementById('media-grid');
+  const loading = document.getElementById('gallery-loading');
+  grid.innerHTML = '';
+  loading.classList.remove('hidden');
+  document.getElementById('gallery-empty').classList.add('hidden');
+  document.getElementById('gallery-stats').classList.add('hidden');
+  allItems = [];
+
+  for (const src of FOLDERS) {
+    const enc = encodeURIComponent('Eco - Trim/' + src.folder);
+    for (const type of ['image','video']) {
+      try {
+        const r = await fetch(`https://res.cloudinary.com/${CLOUD}/${type}/list/${enc}.json`);
+        if (!r.ok) continue;
+        const d = await r.json();
+        (d.resources||[]).forEach(item => {
+          allItems.push({
+            pid: item.public_id,
+            folder: src.folder,
+            label: src.label,
+            isVideo: type === 'video',
+            thumb: type === 'video'
+              ? `https://res.cloudinary.com/${CLOUD}/video/upload/q_60,w_300,h_300,c_fill,so_2/${item.public_id}.jpg`
+              : `https://res.cloudinary.com/${CLOUD}/image/upload/q_60,w_300,h_300,c_fill/${item.public_id}`,
+          });
+        });
+      } catch(e) {}
     }
   }
 
-  function doLogout() {
-    sessionStorage.removeItem('ecotrim_admin');
-    document.getElementById('admin-panel').classList.add('hidden');
-    document.getElementById('login-screen').classList.remove('hidden');
-    document.getElementById('password-input').value = '';
-    document.getElementById('login-error').classList.add('hidden');
+  // Apply saved order
+  const order = getOrder();
+  allItems.sort((a, b) => {
+    const oa = order[a.pid] !== undefined ? order[a.pid] : 9999;
+    const ob = order[b.pid] !== undefined ? order[b.pid] : 9999;
+    return oa - ob;
+  });
+
+  loading.classList.add('hidden');
+  renderGallery();
+}
+
+function reloadGallery() { loadGallery(); }
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function renderGallery() {
+  const grid = document.getElementById('media-grid');
+  const hidden = getHidden();
+  const items = currentFilter === 'all'
+    ? allItems
+    : allItems.filter(i => i.folder === currentFilter);
+
+  grid.innerHTML = '';
+
+  if (items.length === 0) {
+    document.getElementById('gallery-empty').classList.remove('hidden');
+    document.getElementById('gallery-stats').classList.add('hidden');
+    return;
   }
+  document.getElementById('gallery-empty').classList.add('hidden');
 
-  function showPanel() {
-    document.getElementById('login-screen').classList.add('hidden');
-    document.getElementById('admin-panel').classList.remove('hidden');
-  }
+  // Stats
+  const hiddenCount = items.filter(i => hidden.has(i.pid)).length;
+  document.getElementById('stat-total').textContent = items.length;
+  document.getElementById('stat-visible').textContent = items.length - hiddenCount;
+  document.getElementById('stat-hidden').textContent = hiddenCount;
+  document.getElementById('gallery-stats').classList.remove('hidden');
 
-  // Check session on load
-  if (sessionStorage.getItem('ecotrim_admin') === '1') showPanel();
-
-  // Accordion
-  function toggleAccordion() {
-    const body = document.getElementById('accordion-body');
-    const icon = document.getElementById('accordion-icon');
-    const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
-    body.style.maxHeight = isOpen ? '0' : body.scrollHeight + 'px';
-    icon.style.transform = isOpen ? '' : 'rotate(180deg)';
-  }
-
-  // Toast
-  function showToast(msg, type) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast ' + type;
-    setTimeout(() => { t.className = 'toast hidden'; }, 4000);
-  }
-
-  // Upload log
-  function addLog(msg, ok) {
-    const log = document.getElementById('upload-log');
-    log.classList.remove('hidden');
+  items.forEach(item => {
+    const isHidden = hidden.has(item.pid);
     const el = document.createElement('div');
-    el.className = 'flex items-center gap-2 text-sm px-3 py-2 rounded-lg';
-    el.style.background = ok ? '#f0faf2' : '#fff5f5';
-    el.style.color = ok ? '#1a5c38' : '#c0392b';
-    el.innerHTML = (ok ? '✓ ' : '✗ ') + msg;
-    log.prepend(el);
-  }
+    el.className = 'media-item' + (isHidden ? ' is-hidden' : '');
+    el.dataset.pid = item.pid;
+    el.dataset.folder = item.folder;
 
-  // Cloudinary Upload Widget
-  function openUploadWidget() {
-    const sel = document.getElementById('category-select');
-    const folderName = sel.options[sel.selectedIndex].dataset.folder;
-    const cat = sel.options[sel.selectedIndex].dataset.cat;
+    el.innerHTML = `
+      <img src="${item.thumb}" loading="lazy" alt="" />
+      ${item.isVideo ? '<div class="video-badge">▶ Видео</div>' : ''}
+      <div class="hidden-badge">👁 Скрыто</div>
+      <div class="drag-handle" title="Перетащить">
+        <svg width="14" height="14" fill="#555" viewBox="0 0 24 24"><circle cx="9" cy="5" r="1.5"/><circle cx="15" cy="5" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="15" cy="19" r="1.5"/></svg>
+      </div>
+      <div class="overlay">
+        <button class="btn-hide" onclick="toggleHide(event,'${item.pid}')">
+          ${isHidden ? '👁 Показать' : '🙈 Скрыть'}
+        </button>
+      </div>`;
+    grid.appendChild(el);
+  });
 
-    cloudinary.openUploadWidget({
-      cloudName: 'dgesovnb4',
-      uploadPreset: 'ecotrim_portfolio',
-      folder: 'Eco - Trim/' + folderName,
-      sources: ['local', 'camera', 'url'],
-      multiple: true,
-      maxFiles: 50,
-      resourceType: 'auto',
-      clientAllowedFormats: ['jpg','jpeg','png','webp','mp4','mov'],
-      maxFileSize: 100000000,
-      language: 'ru',
-      styles: {
-        palette: {
-          window: '#FFFFFF',
-          windowBorder: '#1a5c38',
-          tabIcon: '#1a5c38',
-          menuIcons: '#5A616A',
-          textDark: '#000000',
-          textLight: '#FFFFFF',
-          link: '#1a5c38',
-          action: '#4caf50',
-          inactiveTabIcon: '#8E9FBF',
-          error: '#F44235',
-          inProgress: '#0078FF',
-          complete: '#1a5c38',
-          sourceBg: '#E4EBF1'
-        }
-      }
-    }, function(error, result) {
-      if (error) {
-        showToast('Ошибка загрузки', 'error');
-        return;
-      }
-      if (result && result.event === 'success') {
-        const name = result.info.original_filename;
-        addLog('Загружено: ' + name + ' → ' + cat, true);
-        showToast('✓ ' + name + ' загружен', 'success');
-      }
-    });
+  // Init Sortable
+  if (sortable) sortable.destroy();
+  sortable = Sortable.create(grid, {
+    animation: 150,
+    ghostClass: 'sortable-ghost',
+    dragClass: 'sortable-drag',
+    handle: '.drag-handle',
+    onEnd: () => {
+      orderChanged = true;
+      document.getElementById('save-bar').style.display = 'flex';
+    }
+  });
+}
+
+// ── Hide / show ───────────────────────────────────────────────────────────────
+function toggleHide(e, pid) {
+  e.stopPropagation();
+  const hidden = getHidden();
+  const el = document.querySelector(`.media-item[data-pid="${CSS.escape(pid)}"]`);
+  if (hidden.has(pid)) {
+    hidden.delete(pid);
+    el && el.classList.remove('is-hidden');
+    el && (el.querySelector('.btn-hide').textContent = '🙈 Скрыть');
+    showToast('Фото показано на сайте', 'success');
+  } else {
+    hidden.add(pid);
+    el && el.classList.add('is-hidden');
+    el && (el.querySelector('.btn-hide').textContent = '👁 Показать');
+    showToast('Фото скрыто с сайта', 'success');
   }
+  setHidden(hidden);
+  // Update stats
+  const allShown = document.querySelectorAll('.media-item').length;
+  const hiddenShown = document.querySelectorAll('.media-item.is-hidden').length;
+  document.getElementById('stat-visible').textContent = allShown - hiddenShown;
+  document.getElementById('stat-hidden').textContent = hiddenShown;
+}
+
+// ── Order ─────────────────────────────────────────────────────────────────────
+function saveOrder() {
+  const cards = document.querySelectorAll('.media-item');
+  const order = getOrder();
+  // Get current full order of all items, then update positions for visible ones
+  cards.forEach((card, idx) => {
+    order[card.dataset.pid] = idx;
+  });
+  setOrder(order);
+  orderChanged = false;
+  document.getElementById('save-bar').style.display = 'none';
+  showToast('Порядок сохранён', 'success');
+}
+function cancelOrder() {
+  orderChanged = false;
+  document.getElementById('save-bar').style.display = 'none';
+  renderGallery();
+}
+
+// ── Filter ────────────────────────────────────────────────────────────────────
+function setGalleryFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery();
+}
+
+// ── Upload widget ─────────────────────────────────────────────────────────────
+function openUploadWidget() {
+  const sel = document.getElementById('category-select');
+  const folderName = sel.options[sel.selectedIndex].dataset.folder;
+  const cat = sel.options[sel.selectedIndex].dataset.cat;
+
+  cloudinary.openUploadWidget({
+    cloudName: CLOUD,
+    uploadPreset: 'ecotrim_portfolio',
+    folder: 'Eco - Trim/' + folderName,
+    sources: ['local','camera','url'],
+    multiple: true, maxFiles: 50,
+    resourceType: 'auto',
+    clientAllowedFormats: ['jpg','jpeg','png','webp','mp4','mov'],
+    maxFileSize: 100000000,
+    language: 'ru',
+    styles: { palette: { window:'#FFF', windowBorder:'#1a5c38', tabIcon:'#1a5c38', link:'#1a5c38', action:'#4caf50', complete:'#1a5c38' } }
+  }, function(error, result) {
+    if (error) { showToast('Ошибка загрузки', 'error'); return; }
+    if (result && result.event === 'success') {
+      showToast('✓ ' + result.info.original_filename + ' загружен', 'success');
+    }
+    if (result && result.event === 'queue-autoclose') {
+      setTimeout(loadGallery, 1500);
+    }
+  });
+}
+
+// ── Accordion ─────────────────────────────────────────────────────────────────
+function toggleAccordion() {
+  const body = document.getElementById('accordion-body');
+  const icon = document.getElementById('accordion-icon');
+  const open = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+  body.style.maxHeight = open ? '0' : body.scrollHeight + 'px';
+  icon.style.transform = open ? '' : 'rotate(180deg)';
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.className = 'toast hidden'; }, 3500);
+}
 </script>
 
 </body>

@@ -691,6 +691,7 @@ footer a:hover{color:#a5d6a7!important}
             const pid = item.public_id;
             this.items.push({
               id: nextId++,
+              pid: pid,
               category: src.category,
               cat: src.cat,
               title: src.category,
@@ -713,6 +714,22 @@ footer a:hover{color:#a5d6a7!important}
               } catch(e) { console.log('Ошибка:', src.folder, type); }
             }
           }
+          // Apply admin hidden list
+          try {
+            const hidden = new Set(JSON.parse(localStorage.getItem('ecotrim_hidden')||'[]'));
+            if (hidden.size) this.items = this.items.filter(i => !hidden.has(i.pid));
+          } catch(e) {}
+          // Apply admin order
+          try {
+            const order = JSON.parse(localStorage.getItem('ecotrim_order')||'{}');
+            if (Object.keys(order).length) {
+              this.items.sort((a,b) => {
+                const oa = order[a.pid] !== undefined ? order[a.pid] : 9999;
+                const ob = order[b.pid] !== undefined ? order[b.pid] : 9999;
+                return oa - ob;
+              });
+            }
+          } catch(e) {}
         },
 
         init() {
