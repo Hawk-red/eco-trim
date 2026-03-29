@@ -1147,6 +1147,8 @@ footer a:hover{color:#a5d6a7!important}
     }
     ticking=false;
   }
+  if(navbar) minTop=navbar.offsetHeight+5;
+  upd();
   window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
   document.getElementById('anim-btn-a').addEventListener('click',function(){
     paused=!paused;
