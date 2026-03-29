@@ -98,16 +98,16 @@
         <div class="flex-1 w-full">
           <label class="block text-sm font-semibold text-gray-600 mb-1">Категория</label>
           <select id="category-select" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-primary bg-white">
-            <option value="Eco - Trim/portfolio_формовка" data-tag="portfolio_формовка" data-cat="Ландшафтная формовка">
+            <option data-folder="portfolio_формовка" data-cat="Ландшафтная формовка">
               Ландшафтная формовка
             </option>
-            <option value="Eco - Trim/portfolio_спасение" data-tag="portfolio_спасение" data-cat="Спасение деревьев">
+            <option data-folder="portfolio_спасение" data-cat="Спасение деревьев">
               Спасение деревьев
             </option>
-            <option value="Eco - Trim/portfolio_обрезка" data-tag="portfolio_обрезка" data-cat="Санитарная обрезка">
+            <option data-folder="portfolio_обрезка" data-cat="Санитарная обрезка">
               Санитарная обрезка
             </option>
-            <option value="Eco - Trim/portfolio_удаление" data-tag="portfolio_удаление" data-cat="Удаление больных веток">
+            <option data-folder="portfolio_удаление" data-cat="Удаление больных веток">
               Удаление больных веток
             </option>
           </select>
@@ -260,15 +260,13 @@
   // Cloudinary Upload Widget
   function openUploadWidget() {
     const sel = document.getElementById('category-select');
-    const folder = sel.value;
-    const tag = sel.options[sel.selectedIndex].dataset.tag;
+    const folderName = sel.options[sel.selectedIndex].dataset.folder;
     const cat = sel.options[sel.selectedIndex].dataset.cat;
 
     cloudinary.openUploadWidget({
       cloudName: 'dgesovnb4',
       uploadPreset: 'ecotrim_portfolio',
-      folder: folder,
-      tags: [tag],
+      folder: 'Eco - Trim/' + folderName,
       sources: ['local', 'camera', 'url'],
       multiple: true,
       maxFiles: 50,
