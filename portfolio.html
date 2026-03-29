@@ -366,9 +366,9 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
               <span class="inline-block bg-accent/90 text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 w-fit" x-text="item.category"></span>
               <h3 class="font-heading font-bold text-white text-lg leading-tight" x-text="item.title"></h3>
               <div class="flex items-center gap-2 mt-2">
-                <span class="text-white/70 text-sm">Смотреть</span>
+                <span class="text-white/70 text-sm" x-text="item.isVideo ? 'Смотреть видео' : 'Смотреть'"></span>
                 <div class="w-6 h-6 bg-accent rounded-full flex items-center justify-center">
-                  <i class="fas fa-expand text-white text-xs"></i>
+                  <i class="fas text-white text-xs" :class="item.isVideo ? 'fa-play' : 'fa-expand'"></i>
                 </div>
               </div>
             </div>
@@ -420,14 +420,23 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
         <i class="fas fa-chevron-left"></i>
       </button>
 
-      <!-- Image -->
+      <!-- Image / Video -->
       <div class="flex flex-col items-center max-w-5xl w-full">
-        <img
-          :src="filteredItems[currentIndex]?.full"
-          :alt="filteredItems[currentIndex]?.title"
-          class="max-h-[65vh] max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300"
-          loading="lazy"
-        />
+        <template x-if="!filteredItems[currentIndex]?.isVideo">
+          <img
+            :src="filteredItems[currentIndex]?.full"
+            :alt="filteredItems[currentIndex]?.title"
+            class="max-h-[65vh] max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300"
+            loading="lazy"
+          />
+        </template>
+        <template x-if="filteredItems[currentIndex]?.isVideo">
+          <video
+            :src="filteredItems[currentIndex]?.full"
+            class="max-h-[65vh] max-w-full rounded-xl shadow-2xl"
+            controls autoplay muted playsinline
+          ></video>
+        </template>
         <div class="mt-4 text-center">
           <span class="bg-accent/80 text-white text-xs font-semibold px-3 py-1 rounded-full" x-text="filteredItems[currentIndex]?.category"></span>
           <h3 class="font-heading font-bold text-white text-xl mt-2" x-text="filteredItems[currentIndex]?.title"></h3>
@@ -808,15 +817,22 @@ footer a:hover{color:#a5d6a7!important}
   if(window.innerWidth<768)return;
   var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
   var footer=document.querySelector('footer');
+  var navbar=document.querySelector('header');
+  var minTop=80;
+  var bottomBtnH=82;
   function upd(){
     if(!paused){
       var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
-      var maxTop=window.innerHeight-95-40;
+      if(navbar) minTop=navbar.offsetHeight+5;
+      var maxTop=window.innerHeight-bottomBtnH;
       if(footer){var footerTop=footer.getBoundingClientRect().top;if(footerTop<window.innerHeight){maxTop=Math.min(maxTop,footerTop-70);}}
-      fig.style.top=(40+Math.min(1,s/tot)*Math.max(0,maxTop-40))+'px';
+      var top=minTop+Math.min(1,s/tot)*Math.max(0,maxTop-minTop);
+      fig.style.top=top+'px';
     }
     ticking=false;
   }
+  if(navbar) minTop=navbar.offsetHeight+5;
+  upd();
   window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
   document.getElementById('anim-btn-a').addEventListener('click',function(){
     paused=!paused;
