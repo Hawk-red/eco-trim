@@ -653,6 +653,7 @@ footer a:hover{color:#a5d6a7!important}
 </style>
   <!-- Back to top -->
   <button
+    id="back-to-top"
     x-show="scrolled"
     @click="window.scrollTo({top:0, behavior:'smooth'})"
     x-transition
@@ -689,7 +690,7 @@ footer a:hover{color:#a5d6a7!important}
 
 <!-- ===== ROPE CLIMBER ANIMATION ===== -->
 <style>
-#rope-scene{position:fixed;right:0;top:0;bottom:0;width:65px;pointer-events:none;z-index:100}
+#rope-scene{position:fixed;right:0;top:0;bottom:0;width:65px;pointer-events:none;z-index:10}
 #rope-line{display:none}
 #climber-fig{position:absolute;right:0;left:auto;width:60px;height:60px;top:40px;
   transition:top .12s cubic-bezier(.25,.46,.45,.94);will-change:top}
@@ -712,6 +713,8 @@ footer a:hover{color:#a5d6a7!important}
   if(window.innerWidth<768)return;
   var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
   var footer=document.querySelector('footer');
+  var backBtn=document.getElementById('back-to-top');
+  var minTop=80;
   function upd(){
     if(!paused){
       var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
@@ -722,7 +725,9 @@ footer a:hover{color:#a5d6a7!important}
           maxTop=Math.min(maxTop,footerTop-70);
         }
       }
-      fig.style.top=(40+Math.min(1,s/tot)*Math.max(0,maxTop-40))+'px';
+      if(backBtn){var btnTop=window.innerHeight-(parseFloat(getComputedStyle(backBtn).bottom)||24)-backBtn.offsetHeight;maxTop=Math.min(maxTop,btnTop-10);}
+      var top=minTop+Math.min(1,s/tot)*Math.max(0,maxTop-minTop);
+      fig.style.top=top+'px';
     }
     ticking=false;
   }
