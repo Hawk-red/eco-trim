@@ -9,6 +9,15 @@
 
   <!-- Favicon -->
   <link href="https://res.cloudinary.com/dgesovnb4/image/upload/t_fave icon/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png" rel="icon" />
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dgesovnb4/image/upload/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="EcoTrim — Обрезка деревьев Киев">
+  <meta property="og:description" content="Профессиональная обрезка и уход за деревьями в Киеве. Опыт 11 лет, 800+ проектов.">
+  <meta property="og:image" content="https://res.cloudinary.com/dgesovnb4/image/upload/q_80,w_1200/v1689774490/Eco%20-%20Trim/carousel_1_gvyux5.png">
+  <meta property="og:url" content="https://ecotrim.kiev.ua">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -519,11 +528,11 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
     </div>
   </div><!-- /max-w -->
   <!-- Grass bottom -->
-  <img src="img/temp/Green Grass Clipart Transparent Background Png Image-pngarc.png" alt="" aria-hidden="true" class="footer-grass"
+  <img src="img/grass.png" alt="" aria-hidden="true" class="footer-grass"
        style="display:block;width:100%;height:130px;object-fit:cover;object-position:top;pointer-events:none;margin-top:0;">
   <!-- Copyright -->
   <div style="text-align:center;padding:0 1rem;">
-    <p style="color:rgba(255,255,255,.6);font-size:.875rem;">&copy; 2025 EcoTrim. Все права защищены.</p>
+    <p style="color:rgba(255,255,255,.6);font-size:.875rem;">&copy; <span id="copy-year"></span> EcoTrim. Все права защищены.</p>
   </div>
   </footer>
 <style>
@@ -661,7 +670,7 @@ footer a:hover{color:#a5d6a7!important}
 </style>
 <div id="rope-scene">
   <div id="rope-line"></div>
-  <img id="climber-fig" src="img/temp/лого 2025 .png" alt="EcoTrim" style="width:60px;height:60px;object-fit:contain;transform:scaleX(-1);mix-blend-mode:multiply;" />
+  <img id="climber-fig" src="img/logo.png" alt="EcoTrim" style="width:60px;height:60px;object-fit:contain;transform:scaleX(-1);mix-blend-mode:multiply;" />
 </div>
 <button id="anim-btn-a" title="Пауза анимации" aria-label="Пауза анимации">
   <svg id="ico-pa" width="14" height="14" viewBox="0 0 14 14" fill="white"><rect x="2" y="1" width="4" height="12" rx="1"/><rect x="8" y="1" width="4" height="12" rx="1"/></svg>
@@ -694,6 +703,7 @@ footer a:hover{color:#a5d6a7!important}
     document.getElementById('ico-pa').style.display=paused?'none':'';
     document.getElementById('ico-ra').style.display=paused?'':'none';
   });
+  document.querySelectorAll('#copy-year').forEach(el=>el.textContent=new Date().getFullYear());
 })();
 </script>
 </body>
