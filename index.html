@@ -165,6 +165,33 @@
     /* Swiper testimonials */
     .testimonial-swiper .swiper-pagination-bullet { background: #4caf50; }
     .testimonial-swiper .swiper-pagination-bullet-active { background: #1a5c38; width: 24px; border-radius: 4px; }
+
+    /* Fix 1: services grid */
+    .services-grid {
+      display: grid !important;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Fix 2: CTA readability */
+    .cta-section {
+      background: linear-gradient(135deg, #0d3520 0%, #060e09 100%) !important;
+    }
+    .cta-section h2 { color: #ffffff !important; font-size: clamp(1.75rem, 4vw, 3rem); }
+    .cta-section p { color: rgba(255,255,255,0.85) !important; }
+    .cta-btn-primary { background: #4caf50; color: #ffffff; font-weight: 700; border: 2px solid #4caf50; }
+    .cta-btn-primary:hover { background: #43a047; border-color: #43a047; }
+    .cta-btn-phone { border: 2px solid rgba(255,255,255,0.6) !important; color: #ffffff; }
+    .cta-btn-phone:hover { border-color: #4caf50 !important; background: rgba(255,255,255,0.08); }
+
+    /* Fix 3: sections above leaves */
+    section { position: relative; z-index: 1; }
   </style>
 <style>
 a .fa-phone,a .fa-envelope{display:inline-block}
@@ -503,7 +530,7 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <!-- Service 1 -->
         <div class="service-card bg-light rounded-2xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="0">
@@ -838,10 +865,10 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
         Без обязательств.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="contact.html" class="bg-accent hover:bg-green-400 text-white font-bold px-10 py-4 rounded-full text-lg transition-all duration-300 shadow-2xl hover:-translate-y-1">
+        <a href="contact.html" class="cta-btn-primary bg-accent hover:bg-green-400 text-white font-bold px-10 py-4 rounded-full text-lg transition-all duration-300 shadow-2xl hover:-translate-y-1">
           Получить смету <i class="fas fa-arrow-right ml-2"></i>
         </a>
-        <a href="tel:+380932935353" class="border-2 border-white/30 hover:border-accent text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-300 hover:bg-white/5">
+        <a href="tel:+380932935353" class="cta-btn-phone border-2 border-white/30 hover:border-accent text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-300 hover:bg-white/5">
           <i class="fas fa-phone mr-2"></i> 093 293 53 53
         </a>
       </div>
