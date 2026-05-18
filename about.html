@@ -708,7 +708,9 @@ header{z-index:1000!important}
 #rope-scene{position:fixed;right:15px;top:0;bottom:0;width:65px;pointer-events:none;z-index:10}
 #rope-line{display:none}
 #climber-fig{position:absolute;right:0;left:auto;width:52px;height:52px;top:40px;
-  transition:top .12s cubic-bezier(.25,.46,.45,.94);}
+  transition:top .12s cubic-bezier(.25,.46,.45,.94);
+  background:transparent!important;border:none!important;
+  box-shadow:none!important;outline:none!important;}
 #anim-btn-a{position:fixed;bottom:1.5rem;left:1.5rem;z-index:10000;width:36px;height:36px;border-radius:50%;border:none;
   background:rgba(26,92,56,.85);cursor:pointer;display:flex;align-items:center;justify-content:center;
   pointer-events:auto;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:background .2s}
@@ -720,9 +722,9 @@ header{z-index:1000!important}
   <div id="rope-line"></div>
   <img
     id="climber-fig"
-    src="https://res.cloudinary.com/dgesovnb4/image/upload/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png"
+    src="https://res.cloudinary.com/dgesovnb4/image/upload/e_background_removal/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png"
     alt="EcoTrim"
-    style="width:52px;height:52px;object-fit:contain;display:block;"
+    style="width:52px;height:52px;object-fit:contain;display:block;background:transparent;border:none;box-shadow:none;outline:none;"
   />
 </div>
 <button id="anim-btn-a" title="Пауза анимации" aria-label="Пауза анимации">
