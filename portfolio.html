@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <title>EcoTrim — Портфолио работ по обрезке деревьев Киев</title>
+  <link rel="canonical" href="https://ecotrim.kiev.ua/portfolio.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Галерея работ компании EcoTrim — обрезка, формирование крон, санитарная обрезка и спасение деревьев в Киеве и области. Смотрите реальные проекты." />
   <meta name="keywords" content="портфолио обрезка деревьев Киев, галерея работ EcoTrim, арборист Киев" />
 
   <!-- Favicon -->
-  <link href="https://res.cloudinary.com/dgesovnb4/image/upload/t_fave icon/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png" rel="icon" />
+  <link rel="icon" type="image/svg+xml" href="img/panda.svg" />
   <link rel="apple-touch-icon" href="https://res.cloudinary.com/dgesovnb4/image/upload/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png">
 
   <!-- Open Graph -->
@@ -243,8 +244,8 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-top:.75rem;">
         <div class="flex items-center justify-between h-16">
           <a href="index.html" class="flex items-center gap-2">
-            <div class="w-9 h-9 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
-              <img src="https://res.cloudinary.com/dgesovnb4/image/upload/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png" alt="EcoTrim" class="w-full h-full object-cover" style="object-fit:cover;object-position:center top;" />
+            <div class="w-9 h-9 rounded-full overflow-hidden shadow-lg flex-shrink-0">
+              <img src="img/panda.svg" alt="EcoTrim" class="w-full h-full" width="36" height="36" />
             </div>
             <span class="font-heading font-bold text-xl text-dark">Eco<span class="text-primary">Trim</span></span>
           </a>
@@ -557,15 +558,13 @@ footer a[href^="mailto"]:hover i{animation:iconBounce .5s ease}
   </div><!-- /max-w -->
   <!-- Grass bottom -->
   <img src="img/grass.png" alt="" aria-hidden="true" class="footer-grass"
-       style="display:block;width:100%;height:130px;object-fit:cover;object-position:top;pointer-events:none;margin-top:0;">
-  <!-- Copyright -->
-  <div style="text-align:center;padding:0 1rem;">
-    <p style="color:rgba(255,255,255,.6);font-size:.875rem;">&copy; <span id="copy-year"></span> EcoTrim. Все права защищены.</p>
-  </div>
+       style="display:block;width:100%;height:220px;object-fit:cover;object-position:top;pointer-events:none;margin-top:0;">
   </footer>
+  <!-- Листья, пауза и панда: общий файл для всех страниц -->
+  <script src="js/eco-decor.js"></script>
 <style>
 footer a:hover{color:#a5d6a7!important}
-@media(max-width:768px){.footer-grass{height:80px!important}}
+@media(max-width:768px){.footer-grass{height:140px!important}}
 </style>
   <!-- Back to top -->
   <button
@@ -820,57 +819,8 @@ footer a:hover{color:#a5d6a7!important}
   document.querySelectorAll('.trees-dynamic').forEach(el=>el.textContent=_trees.toLocaleString());
   document.querySelectorAll('.parasites-dynamic').forEach(el=>el.textContent=_parasites+'+');
   document.querySelectorAll('.years-dynamic').forEach(el=>el.textContent=_yr);
-  document.querySelectorAll('#copy-year').forEach(el=>el.textContent=new Date().getFullYear());
 })();
 </script>
-<!-- ===== PANDA SCROLL ===== -->
-<style>
-#rope-scene{position:fixed;right:0;top:0;bottom:0;width:65px;pointer-events:none;z-index:100}
-#rope-line{display:none}
-#climber-fig{position:absolute;right:0;left:auto;width:60px;height:60px;top:40px;
-  transition:top .12s cubic-bezier(.25,.46,.45,.94);}
-#anim-btn-a{position:fixed;bottom:1.5rem;left:1.5rem;z-index:10000;width:36px;height:36px;border-radius:50%;border:none;
-  background:rgba(26,92,56,.85);cursor:pointer;display:flex;align-items:center;justify-content:center;
-  pointer-events:auto;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:background .2s}
-#anim-btn-a:hover{background:rgba(26,92,56,1)}
-@media(max-width:768px){#rope-scene,#anim-btn-a{display:none}}
-</style>
-<div id="rope-scene">
-  <div id="rope-line"></div>
-  <img id="climber-fig" src="https://res.cloudinary.com/dgesovnb4/image/upload/v1743517002/Eco%20-%20Trim/LOGO/panda_favicon_final_p3hqgt.png" alt="EcoTrim" style="width:52px;height:52px;object-fit:cover;object-position:center top;display:block;border-radius:50%;background:transparent;border:none;box-shadow:none;" />
-</div>
-<button id="anim-btn-a" title="Пауза анимации" aria-label="Пауза анимации">
-  <svg id="ico-pa" width="14" height="14" viewBox="0 0 14 14" fill="white"><rect x="2" y="1" width="4" height="12" rx="1"/><rect x="8" y="1" width="4" height="12" rx="1"/></svg>
-  <svg id="ico-ra" width="14" height="14" viewBox="0 0 14 14" fill="white" style="display:none"><polygon points="2,1 12,7 2,13"/></svg>
-</button>
-<script>
-(function(){
-  if(window.innerWidth<768)return;
-  var fig=document.getElementById('climber-fig'),paused=false,ticking=false;
-  var footer=document.querySelector('footer');
-  var navbar=document.querySelector('header');
-  var minTop=80;
-  var bottomBtnH=82;
-  function upd(){
-    if(!paused){
-      var s=window.scrollY,tot=Math.max(1,document.body.scrollHeight-window.innerHeight);
-      if(navbar) minTop=navbar.offsetHeight+5;
-      var maxTop=window.innerHeight-bottomBtnH;
-      if(footer){var footerTop=footer.getBoundingClientRect().top;if(footerTop<window.innerHeight){maxTop=Math.min(maxTop,footerTop-70);}}
-      var top=minTop+Math.min(1,s/tot)*Math.max(0,maxTop-minTop);
-      fig.style.top=top+'px';
-    }
-    ticking=false;
-  }
-  if(navbar) minTop=navbar.offsetHeight+5;
-  upd();
-  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
-  document.getElementById('anim-btn-a').addEventListener('click',function(){
-    paused=!paused;
-    document.getElementById('ico-pa').style.display=paused?'none':'';
-    document.getElementById('ico-ra').style.display=paused?'':'none';
-  });
-})();
-</script>
+
 </body>
 </html>
