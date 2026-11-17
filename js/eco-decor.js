@@ -26,7 +26,7 @@
     '#rope-scene{position:fixed;right:6px;top:0;bottom:0;width:56px;pointer-events:none;z-index:100}' +
     '#climber-fig{position:absolute;right:0;top:90px;width:52px;height:52px;display:block;' +
     'filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));transition:top .12s cubic-bezier(.25,.46,.45,.94)}' +
-    '@media(max-width:767px){#rope-scene{display:none}#anim-btn{bottom:1rem;left:1rem}}';
+    '@media(max-width:767px){#rope-scene{display:none}#anim-btn{width:30px;height:30px;bottom:.75rem;left:.75rem;opacity:.75}}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   /* ---------- листья ---------- */
